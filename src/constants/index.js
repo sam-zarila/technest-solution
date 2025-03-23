@@ -46,7 +46,7 @@ const services = [
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "Mobile Apps Developer",
     icon: mobile,
   },
   {
@@ -54,7 +54,7 @@ const services = [
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "web  and mobile trainings ",
     icon: creator,
   },
 ];
@@ -81,7 +81,7 @@ const technologies = [
     icon: reactjs,
   },
   {
-    name: "Redux Toolkit",
+    name: "NextJs",
     icon: redux,
   },
   {
@@ -114,60 +114,47 @@ const technologies = [
   },
 ];
 
+
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Full Stack Developer",
+    company_name: "Liwonde Private Hospital",
+    icon: tesla, // Replace with actual icon
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "2022 - 2024",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developed and maintained the hospital management system to streamline patient records and appointments.",
+      "Integrated secure authentication and data management solutions.",
+      "Ensured a responsive and user-friendly interface for healthcare professionals and patients.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Lead Developer",
+    company_name: "University Connect SuperApp",
+    icon: shopify, // Replace with actual icon
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "2023 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Designed and developed a multi-functional super app for university students.",
+      "Implemented features for academic collaboration, networking, and resource sharing.",
+      "Optimized backend architecture for scalability and real-time updates.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
+    title: "Software Developer",
+    company_name: "HomeHub Malawi",
+    icon: meta, // Replace with actual icon
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "2023 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developed a real estate and home services platform connecting users with service providers.",
+      "Implemented a seamless search and booking system for property listings.",
+      "Integrated payment gateways and geolocation services for enhanced user experience.",
     ],
   },
 ];
+
+
 
 const testimonials = [
   {
@@ -198,16 +185,38 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Liwonde Private Hospital",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A healthcare service platform for Liwonde Private Hospital, providing online consultation booking, appointment management, and patient information access.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
+        name: "nodejs",
+        color: "green-text-gradient",
+      },
+      {
         name: "mongodb",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: "https://www.liwondeprivatehospital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fliwonde.9a9f1e58.jpeg&w=1080&q=75", // Replace with the actual URL of your image
+    source_code_link: "https://github.com/your-repository/LiwondePrivateHospital",
+    live_link: "https://www.liwondeprivatehospital.com/", // Replace with the live project URL
+  },
+  {
+    name: "HomeHub Malawi",
+    description:
+      "A platform for finding homes to rent or buy in Malawi, connecting home seekers with landlords and providing detailed property listings.",
+    tags: [
+      {
+        name: "Nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Nestjs",
         color: "green-text-gradient",
       },
       {
@@ -215,51 +224,67 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: "https://i.pinimg.com/736x/5a/ee/42/5aee4269e6d739468d8596fb610b18b7.jpg", // Replace with the actual URL of your image
+    source_code_link: "https://github.com/your-repository/HomeHubMalawi",
+    live_link: "https://homehubmw.netlify.app/", // Replace with the live project URL
   },
   {
-    name: "Job IT",
+    name: "PaySmart Malawi",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "A mobile application that enables efficient and secure financial transactions in Malawi, offering users various payment and money transfer options.",
     tags: [
       {
-        name: "react",
+        name: "flutter",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "api",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "paymentgateway",
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    image: "https://i.pinimg.com/736x/93/a5/8b/93a58b720f360ca801614c2b4860830a.jpg", // Replace with the actual URL of your image
+    source_code_link: "https://github.com/your-repository/PaySmartMalawi",
+    live_link: "https://your-live-link.com/paysmart-malawi", // Replace with the live project URL
+  },
+];
+const courses = [
+  {
+    title: "Frontend Development with Next.js, React, and Tailwind",
+    description:
+      "Learn the fundamentals of frontend development using modern technologies like Next.js, React.js, and Tailwind CSS. Build fast, responsive websites with state-of-the-art tools.",
+    icon: web,
+    price: "MWK 10,000 per week",
+    buttonText: "Shop Course",
   },
   {
-    name: "Trip Guide",
+    title: "Backend Development with NestJS, Python, and Firebase",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
+      "Dive into backend development with NestJS, Python, and Firebase. Learn how to build robust APIs and handle data management with ease.",
+    icon: backend,
+    price: "MWK 15,000 per week",
+    buttonText: "Shop Course",
+  },
+  {
+    title: "Full Stack Development with Next.js, React, Tailwind, NestJS, and Firebase",
+    description:
+      "Master full-stack development by integrating frontend and backend technologies like Next.js, React.js, NestJS, and Firebase. Build complete web applications from scratch.",
+    icon: creator,
+    price: "MWK 20,000 per week",
+    buttonText: "Shop Course",
+  },
+  {
+    title: "Mobile App Development with Flutter, Kotlin, and Superbase",
+    description:
+      "Learn to build cross-platform mobile applications with Flutter and Kotlin. Integrate Superbase for real-time data synchronization and user authentication.",
+    icon: mobile,
+    price: "MWK 18,000 per week",
+    buttonText: "Shop Course",
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+
+export { services, technologies, experiences, testimonials, projects,courses };

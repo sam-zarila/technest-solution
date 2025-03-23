@@ -15,6 +15,7 @@ const ProjectCard = ({
   tags,
   image,
   source_code_link,
+  live_link, // Added live link prop
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -54,13 +55,22 @@ const ProjectCard = ({
 
         <div className='mt-4 flex flex-wrap gap-2'>
           {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
-            >
+            <p key={`${name}-${tag.name}`} className={`text-[14px] ${tag.color}`}>
               #{tag.name}
             </p>
           ))}
+        </div>
+
+        {/* Added live project link */}
+        <div className="mt-4">
+          <a
+            href={live_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-[14px] font-semibold"
+          >
+            View Live Project
+          </a>
         </div>
       </Tilt>
     </motion.div>
@@ -71,7 +81,7 @@ const Works = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My work</p>
+        <p className={`${styles.sectionSubText}`}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>
 
@@ -80,11 +90,11 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          Following projects showcases my skills and experience through
+          Following projects showcase my skills and experience through
           real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+          links to code repositories and live demos. It reflects my ability to
+          solve complex problems, work with different technologies, and manage
+          projects effectively.
         </motion.p>
       </div>
 
