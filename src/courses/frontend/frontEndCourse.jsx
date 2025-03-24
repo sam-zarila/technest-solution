@@ -11,29 +11,39 @@ const frontEndCourse = {
   duration: "12 Weeks",
   levels: [
     {
-      name: "Beginner Level (Weeks 1-4)",
+      name: "Introduction to Web Development(1-4 weeks)",
       topics: [
-        "Introduction to Web Development",
-        "HTML & CSS Essentials",
-        "JavaScript Fundamentals",
-        "Version Control & Deployment Basics",
+        "Understanding how websites work",
+        "Overview of HTML, CSS, and JavaScript",
+        "Setting up your development environment (VS Code, Node.js, Git)",
       ],
     },
     {
-      name: "Intermediate Level (Weeks 5-8)",
+      name: "HTML & CSS Essentials(4-8 weeks)",
       topics: [
-        "Advanced JavaScript & ES6 Features",
-        "React.js Essentials",
-        "Next.js Basics & API Integration",
-        "Tailwind CSS for Styling",
+        "HTML structure and semantics",
+        "CSS basics: Selectors, Box Model, Flexbox, and Grid",
+        "Responsive design with Media Queries",
+        "building a simple website",
       ],
     },
     {
-      name: "Expert Level (Weeks 9-12)",
+      name: "React.Js Essentials(8-12 weeks)",
       topics: [
-        "State Management & Advanced Hooks",
-        "Authentication & Security",
-        "Building a Real-world Project",
+        "Introduction to React and JSX",
+        "Components, Props, and State",
+        "Handling Events and Forms",
+        "tailwind css",
+        "build web portifolio"
+      ],
+    },
+    {
+      name: "Final Project (1 week)",
+      topics: [
+        "Full-featured web app (E-commerce, Dashboard, or Blog)",
+        "Integrating APIs and third-party libraries",
+        "Deployment",
+        
       ],
     },
   ],
