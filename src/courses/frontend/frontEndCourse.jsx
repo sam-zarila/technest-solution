@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { fadeIn, textVariant } from "../../utils/motion";  // Keep these as they are
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import { fadeIn, textVariant } from "../../utils/motion";
+import { useNavigate } from "react-router-dom";
 
 const frontEndCourse = {
   title: "Frontend Development with Next.js, React, and Tailwind",
@@ -37,22 +37,34 @@ const frontEndCourse = {
       ],
     },
   ],
+  trainingModes: [
+    "Online Classes",
+    "Recorded Videos",
+    "Hands-on Activities",
+    "Projects",
+  ],
 };
 
-const CourseDetailCard = ({ title, description, price, duration, levels }) => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
-
-  const handleShopCourse = () => {
-    // Navigate to the shopping page (e.g., /shop)
-    navigate("/shop");
-  };
+const CourseDetailCard = ({ title, description, price, duration, levels, trainingModes }) => {
+  const navigate = useNavigate();
 
   return (
     <motion.div variants={fadeIn("up", "spring", 0.3, 0.75)} className="bg-gray-900 p-6 rounded-xl shadow-lg w-full max-w-3xl mx-auto">
+      {/* Icons Section */}
+      <div className="flex justify-center space-x-4 mb-4">
+        <img src="/icons/html.png" alt="HTML" className="w-12 h-12" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s" alt="CSS" className="w-12 h-12" />
+        <img src="/icons/javascript.png" alt="JavaScript" className="w-12 h-12" />
+        <img src="/icons/react.png" alt="React" className="w-12 h-12" />
+      </div>
+      
       <h3 className="text-white text-2xl font-bold mb-2">{title}</h3>
       <p className="text-gray-300 mb-4">{description}</p>
       <p className="text-lg text-green-400 font-semibold">{price} | {duration}</p>
       
+     
+      
+      {/* Course Levels Section */}
       {levels.map((level, index) => (
         <div key={index} className="mt-4">
           <h4 className="text-xl text-white font-semibold">{level.name}</h4>
@@ -63,12 +75,22 @@ const CourseDetailCard = ({ title, description, price, duration, levels }) => {
           </ul>
         </div>
       ))}
+       {/* Training Modes Section */}
+       <div className="mt-6">
+        <h4 className="text-xl text-white font-semibold">Training Modes</h4>
+        <ul className="list-disc list-inside text-gray-400 mt-2">
+          {trainingModes.map((mode, index) => (
+            <li key={index}>{mode}</li>
+          ))}
+        </ul>
+      </div>
       
+      {/* Enroll Button */}
       <button
-        onClick={handleShopCourse} // Trigger navigate when button is clicked
+        onClick={() => navigate("/shop")}
         className="mt-6 w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition"
       >
-        Shop Course Now
+        Enroll in Course
       </button>
     </motion.div>
   );
@@ -83,4 +105,4 @@ const FrontEndCoursePage = () => {
   );
 };
 
-export default FrontEndCoursePage;  // Export directly without SectionWrapper
+export default FrontEndCoursePage;
