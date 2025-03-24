@@ -6,6 +6,7 @@ import ShopCourse from "./shop/ShopCourse"; // Import the ShopCourse component
 import TeamPage from "./components/Team";
 import BackendCourse from "./courses/Backend/BackendCourse";
 import PackagesPage from "./components/packages";
+import ContactUs from "./contact/ContactUs";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
           {/* Route to FrontEndCourse Page */}
           <Route path="/courses/frontend" element={<FrontEndCourse />} />
           <Route path="/courses/Backend" element={<BackendCourse />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           {/* Route to Course Shopping Page */}
           <Route path="/shop" element={<ShopCourse />} /> {/* Add this line for the shopping page */}

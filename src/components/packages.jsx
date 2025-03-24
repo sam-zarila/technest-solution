@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGlobe, FaCode, FaMobileAlt } from "react-icons/fa";
+import { FaGlobe, FaCode, FaMobileAlt,FaWhatsapp,FaFacebook, FaTwitter,FaMobile } from "react-icons/fa";
+
 
 const packages = [
   {
@@ -30,6 +31,7 @@ const packages = [
 ];
 
 const PackagesPage = () => {
+  ;
   return (
     <div className="p-10 bg-gray-900 text-white">
       <h1 className="text-center text-4xl font-bold mb-10">Website & App Packages</h1>
@@ -45,11 +47,15 @@ const PackagesPage = () => {
             <h2 className="text-2xl font-semibold text-center mb-2">{pkg.title}</h2>
             <p className="text-center text-gray-300 mb-4">{pkg.description}</p>
             <p className="text-center text-xl font-bold text-yellow-400">{pkg.price}</p>
-            <div className="flex justify-center mt-4">
-              <button className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg text-white font-semibold">
-                Contact Us
-              </button>
-            </div>
+             <div className="flex justify-center mt-2 text-green-400 font-semibold text-lg">
+                Quick contacts
+             </div>
+             <div className="flex justify-center space-x-6">
+             <FaWhatsapp size={30} className="text-green-500 cursor-pointer hover:text-green-700" />
+             <FaFacebook size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
+             <FaTwitter size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
+             <FaMobile size={30} className="text-purple-500 cursor-pointer hover:text-green-700" />
+             </div>
           </motion.div>
         ))}
       </div>
