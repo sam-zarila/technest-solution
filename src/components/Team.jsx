@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { fadeIn, textVariant } from "../utils/motion"; // Assuming motion effects
+import { fadeIn, textVariant } from "../utils/motion";
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp,FaGithub} from "react-icons/fa"; // Assuming motion effects
 
 const teamMembers = [
   {
@@ -20,7 +21,7 @@ const teamMembers = [
       github: "https://github.com/samsonzarila",
       twitter: "https://twitter.com/samsonzarila"
     },
-    image: "https://www.instagram.com/p/C0W5hyEIWg9/?img_index=1" // Replace with actual image path
+    image: "public\images\CEO.jpg" // Replace with actual image path
   },
   {
     name: "Connex Chabwera",
@@ -65,7 +66,7 @@ const TeamPage = () => {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {teamMembers.map((member, index) => (
-          <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+          <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg ">
             <img
               src={member.image}
               alt={member.name}
@@ -82,17 +83,24 @@ const TeamPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="flex justify-center gap-4 mt-4">
-              <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-linkedin text-2xl text-white-200"></i>
-              </a>
-              <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-github text-2xl text-gray-600"></i>
-              </a>
-              <a href={member.socialLinks.twitter} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-twitter text-2xl text-blue-400"></i>
-              </a>
-            </div>
+             <div className="flex justify-center space-x-6 mt-6 text-white">
+                      <a href="#" className="hover:text-blue-500" aria-label="Facebook">
+                        <FaFacebook size={24} />
+                      </a>
+                      <a href="#" className="hover:text-green-500" aria-label="Facebook">
+                        <FaWhatsapp size={24} />
+                      </a>
+                      <a href="#" className="hover:text-blue-400" aria-label="Twitter">
+                         <FaTwitter size={24} />
+                       </a>
+                       <a href="#" className="hover:text-blue-700" aria-label="LinkedIn">
+                         <FaLinkedin size={24} />
+                       </a>
+                       <a href="#" className="hover:text-blue-700" aria-label="LinkedIn">
+                         < FaGithub size={24} />
+                       </a>
+                    </div>
+            
           </div>
         ))}
       </div>

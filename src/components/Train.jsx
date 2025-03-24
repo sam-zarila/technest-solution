@@ -47,7 +47,7 @@ const trainCourses = [
 
 const CourseCard = ({ title, description, price, duration, path }) => {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-all">
+      <div className="bg-gray-200 p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-all">
         <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
         <p className="text-gray-700 mt-2">{description}</p>
         <p className="text-green-600 font-bold mt-3">{price}</p>
