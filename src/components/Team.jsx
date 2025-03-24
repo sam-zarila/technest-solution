@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../utils/motion";
+import CEOImage from "/images/CEO.jpg";
+import BengoImage from "/images/Bengo.jpg";
+
+
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp,FaGithub} from "react-icons/fa"; // Assuming motion effects
 
 const teamMembers = [
@@ -21,7 +25,7 @@ const teamMembers = [
       github: "https://github.com/samsonzarila",
       twitter: "https://twitter.com/samsonzarila"
     },
-    image: "public\images\CEO.jpg" // Replace with actual image path
+    image: CEOImage // Replace with actual image path
   },
   {
     name: "Connex Chabwera",
@@ -38,7 +42,7 @@ const teamMembers = [
       github: "https://github.com/connexchabwera",
       twitter: "https://twitter.com/connexchabwera"
     },
-    image: "path/to/connex-image.jpg" // Replace with actual image path
+    image: BengoImage // Replace with actual image path
   },
   {
     name: "Crossby Chilikuntima",
@@ -70,7 +74,7 @@ const TeamPage = () => {
             <img
               src={member.image}
               alt={member.name}
-              className="w-32 h-32 rounded-full mx-auto mb-4"
+              className="w-96 h-96 rounded-full mx-auto mb-4"
             />
             <h3 className="text-2xl text-white font-semibold">{member.name}</h3>
             <p className="text-gray-400 mb-4">{member.role}</p>

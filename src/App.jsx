@@ -5,6 +5,7 @@ import FrontEndCourse from "./courses/frontend/frontEndCourse";
 import ShopCourse from "./shop/ShopCourse"; // Import the ShopCourse component
 import TeamPage from "./components/Team";
 import BackendCourse from "./courses/Backend/BackendCourse";
+import PackagesPage from "./components/packages";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
                 <Train />
                 <Feedbacks />
                 <TeamPage />
+                <PackagesPage />
                 <div className='relative z-0'>
                   <Contact />
                   <StarsCanvas />
