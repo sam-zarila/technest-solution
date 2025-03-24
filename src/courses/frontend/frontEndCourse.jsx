@@ -77,7 +77,7 @@ const CourseDetailCard = ({ title, description, price, duration, levels }) => {
 const FrontEndCoursePage = () => {
   return (
     <motion.div variants={textVariant()} className="p-6">
-      <h1 className="text-center text-3xl text-white font-bold">Frontend Development Course</h1>
+      <h1 className="mt-20 text-center text-3xl text-white font-bold">Frontend Development Course</h1>
       <CourseDetailCard {...frontEndCourse} />
     </motion.div>
   );

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, StarsCanvas } from "./components";
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, StarsCanvas, Works } from "./components";
 import Train from "./components/Train";
 import FrontEndCourse from "./courses/frontend/frontEndCourse";
 import ShopCourse from "./shop/ShopCourse"; // Import the ShopCourse component
@@ -24,6 +24,7 @@ const App = () => {
                 <About />
                 <Experience />
                 <Tech />
+                <Works />
                 <Train />
                 <Feedbacks />
                 <TeamPage />

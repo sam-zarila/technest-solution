@@ -27,6 +27,22 @@ const trainCourses = [
     duration: "4 hours per week",
     path: "/courses/fullstack",
   },
+  {
+    title: "Mobile Application Development with Flutter",
+    description:
+      "Learn how to build cross-platform mobile applications using Flutter. Gain hands-on experience in UI design and state management.",
+    price: "MWK 15,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/flutter",
+  },
+  {
+    title: "Introduction to Java Programming",
+    description:
+      "Get started with Java programming. Learn the basics of object-oriented programming, data structures, and algorithm design.",
+    price: "MWK 5,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/java",
+  },
 ];
 
 const CourseCard = ({ title, description, price, duration, path }) => {
@@ -49,6 +65,11 @@ const Train = () => {
   return (
     <div className="container mx-auto px-6 py-12">
       <h2 className="text-3xl font-bold text-center text-gray-200">Tech Training Courses</h2>
+      <p className="text-center text-gray-400 mt-4 max-w-2xl mx-auto">
+        Our tech training school is dedicated to equipping learners with the latest
+        industry-relevant skills in software development. We provide hands-on experience
+        and mentorship to help you succeed in the tech industry.
+      </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         {trainCourses.map((course, index) => (
           <CourseCard key={index} {...course} />
@@ -59,3 +80,4 @@ const Train = () => {
 };
 
 export default Train;
+
