@@ -52,10 +52,10 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
     <motion.div variants={fadeIn("up", "spring", 0.3, 0.75)} className="bg-gray-900 p-6 rounded-xl shadow-lg w-full max-w-3xl mx-auto">
       {/* Icons Section */}
       <div className="flex justify-center space-x-4 mb-4">
-        <img src="/icons/html.png" alt="HTML" className="w-12 h-12" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s" alt="HTML" className="w-12 h-12" />
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s" alt="CSS" className="w-12 h-12" />
-        <img src="/icons/javascript.png" alt="JavaScript" className="w-12 h-12" />
-        <img src="/icons/react.png" alt="React" className="w-12 h-12" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s" alt="JavaScript" className="w-12 h-12" />
+        <img src="https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png" alt="React" className="w-12 h-12" />
       </div>
       
       <h3 className="text-white text-2xl font-bold mb-2">{title}</h3>
