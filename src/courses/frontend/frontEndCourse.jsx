@@ -51,12 +51,22 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
   return (
     <motion.div variants={fadeIn("up", "spring", 0.3, 0.75)} className="bg-gray-900 p-6 rounded-xl shadow-lg w-full max-w-3xl mx-auto">
       {/* Icons Section */}
-      <div className="flex justify-center space-x-4 mb-4">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s" alt="HTML" className="w-12 h-12" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s" alt="CSS" className="w-12 h-12" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s" alt="JavaScript" className="w-12 h-12" />
-        <img src="https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png" alt="React" className="w-12 h-12" />
-      </div>
+      <div className="flex justify-center space-x-6 mb-6">
+  {[
+    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s", alt: "HTML" },
+    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s", alt: "CSS" },
+    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s", alt: "JavaScript" },
+    { src: "https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png", alt: "React" },
+  ].map((icon, index) => (
+    <div 
+      key={index} 
+      className="p-3 bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform"
+    >
+      <img src={icon.src} alt={icon.alt} className="w-14 h-14 rounded-full" />
+    </div>
+  ))}
+</div>
+
       
       <h3 className="text-white text-2xl font-bold mb-2">{title}</h3>
       <p className="text-gray-300 mb-4">{description}</p>
