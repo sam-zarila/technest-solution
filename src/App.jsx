@@ -4,6 +4,7 @@ import Train from "./components/Train";
 import FrontEndCourse from "./courses/frontend/frontEndCourse";
 import ShopCourse from "./shop/ShopCourse"; // Import the ShopCourse component
 import TeamPage from "./components/Team";
+import BackendCourse from "./courses/Backend/BackendCourse";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
 
           {/* Route to FrontEndCourse Page */}
           <Route path="/courses/frontend" element={<FrontEndCourse />} />
+          <Route path="/courses/Backend" element={<BackendCourse />} />
 
           {/* Route to Course Shopping Page */}
           <Route path="/shop" element={<ShopCourse />} /> {/* Add this line for the shopping page */}

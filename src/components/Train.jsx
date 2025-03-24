@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { styles } from "../styles";
+import { motion } from "framer-motion";
 
 const trainCourses = [
   {
@@ -17,7 +19,7 @@ const trainCourses = [
       "Dive into backend development with NestJS, Python, and Firebase. Learn how to build robust APIs and manage data effectively.",
     price: "MWK 15,000 per week",
     duration: "4 hours per week",
-    path: "/courses/backend",
+    path: "/courses/Backend",
   },
   {
     title: "Full Stack Development with Next.js, React, Tailwind, NestJS, and Firebase",
@@ -64,8 +66,9 @@ const CourseCard = ({ title, description, price, duration, path }) => {
 const Train = () => {
   return (
     <div className="container mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-center text-gray-200">Tech Training Courses</h2>
-      <p className="text-center text-gray-400 mt-4 max-w-2xl mx-auto">
+      <h2 className={`${styles.sectionHeadText}`}>Tech Training Courses</h2>
+      
+      <p className="className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
         Our tech training school is dedicated to equipping learners with the latest
         industry-relevant skills in software development. We provide hands-on experience
         and mentorship to help you succeed in the tech industry.
