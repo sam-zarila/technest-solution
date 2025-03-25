@@ -7,7 +7,7 @@ const frontEndCourse = {
   title: "Frontend Development with Next.js, React, and Tailwind",
   description:
     "Learn the fundamentals of frontend development using modern technologies. Build fast, responsive websites with state-of-the-art tools.",
-  price: "MWK 10,000 per week",
+  price: "MWK 6,000 per week",
   duration: "12 Weeks",
   levels: [
     {
