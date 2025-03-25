@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp,} from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const courseDetails = {
   title: "Frontend Development with Next.js, React, and Tailwind",
@@ -15,6 +15,8 @@ const CourseShoppingPage = () => {
     error: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -24,13 +26,48 @@ const CourseShoppingPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.amount !== "6000") {
       setFormData((prev) => ({ ...prev, error: "Amount must be exactly MWK 6,000" }));
       return;
     }
-    console.log("Form submitted with data: ", formData);
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:3000/payments/pay", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+        },
+        body: JSON.stringify({
+          amount: formData.amount,
+          email: formData.email,
+          name: formData.name,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data?.data?.checkout_url) {
+        window.location.href = data.data.checkout_url; // Redirect to the payment page
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          error: "Payment initiation failed. Please try again.",
+        }));
+      }
+    } catch (error) {
+      console.error("Payment Error:", error);
+      setFormData((prev) => ({
+        ...prev,
+        error: "An error occurred. Please try again later.",
+      }));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -92,9 +129,10 @@ const CourseShoppingPage = () => {
           <div>
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition"
+              className={`w-full py-3 text-white rounded-lg text-lg font-bold transition ${loading ? "bg-gray-500" : "bg-blue-600 hover:bg-blue-700"}`}
+              disabled={loading}
             >
-              Pay Now
+              {loading ? "Processing..." : "Pay Now"}
             </button>
           </div>
         </form>
@@ -102,15 +140,15 @@ const CourseShoppingPage = () => {
           <a href="#" className="hover:text-blue-500" aria-label="Facebook">
             <FaFacebook size={24} />
           </a>
-          <a href="#" className="hover:text-blue-500" aria-label="Facebook">
+          <a href="#" className="hover:text-blue-500" aria-label="Whatsapp">
             <FaWhatsapp size={24} />
           </a>
           <a href="#" className="hover:text-blue-400" aria-label="Twitter">
-             <FaTwitter size={24} />
-           </a>
-           <a href="#" className="hover:text-blue-700" aria-label="LinkedIn">
-             <FaLinkedin size={24} />
-           </a>
+            <FaTwitter size={24} />
+          </a>
+          <a href="#" className="hover:text-blue-700" aria-label="LinkedIn">
+            <FaLinkedin size={24} />
+          </a>
         </div>
       </div>
     </div>
@@ -118,4 +156,3 @@ const CourseShoppingPage = () => {
 };
 
 export default CourseShoppingPage;
-
