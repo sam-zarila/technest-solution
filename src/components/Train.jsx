@@ -4,6 +4,20 @@ import { styles } from "../styles";
 
 const trainCourses = [
   {
+    title: "Frontend Development with Next.js, React, and Tailwind",
+    description:
+      "Learn the fundamentals of frontend development using modern technologies like Next.js, React.js, and Tailwind CSS.",
+    price: "MWK 6,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/frontend",
+    icons: [
+      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s", alt: "HTML" },
+      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s", alt: "CSS" },
+      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s", alt: "JavaScript" },
+      { src: "https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png", alt: "React" },
+    ],
+  },
+  {
     title: "Backend Development with NestJS",
     description:
       "Dive into backend development with NestJS, Python, and Firebase. Learn how to build robust APIs and manage data effectively.",
@@ -51,6 +65,20 @@ const trainCourses = [
     path: "/courses/java",
     icons: [
       { src: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg", alt: "Java" },
+    ],
+    
+  },
+  {
+    title: "Basic Computer Training (Microsoft Word, Typing, Excel)",
+    description:
+      "Learn essential computer skills, including Microsoft Word, typing techniques, and Excel basics for office productivity.",
+    price: "MWK 4,000 per week",
+    duration: "3 hours per week",
+    path: "/courses/basic-computer",
+    icons: [
+      { src: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Microsoft_Office_Word_%282013%E2%80%932019%29.svg", alt: "Microsoft Word" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/4/43/Microsoft_Office_Excel_%282013-2019%29.svg", alt: "Excel" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Keyboard-icon.svg", alt: "Typing" },
     ],
   },
 ];
