@@ -4,78 +4,92 @@ import { styles } from "../styles";
 
 const trainCourses = [
   {
-    title: "Frontend Development with Next.js, React, and Tailwind",
+    title: "Backend Development with NestJS",
     description:
-      "Learn the fundamentals of frontend development using modern technologies like Next.js, React.js, and Tailwind CSS.",
-    price: "MWK 6,000 per week",
+      "Dive into backend development with NestJS, Python, and Firebase. Learn how to build robust APIs and manage data effectively.",
+    price: "MWK 10,000 per week",
     duration: "4 hours per week",
-    path: "/courses/frontend",
+    path: "/courses/backend",
     icons: [
-      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s", alt: "HTML" },
-      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s", alt: "CSS" },
-      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s", alt: "JavaScript" },
-      { src: "https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png", alt: "React" },
+      { src: "https://nestjs.com/img/logo_text.svg", alt: "NestJS" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg", alt: "Python" },
+      { src: "https://firebase.google.com/static/downloads/brand-guidelines/SVG/logo-logomark.svg", alt: "Firebase" },
     ],
   },
   {
-    title: "Basic Computer Training (Microsoft Word, Typing, Excel)",
+    title: "Full Stack Development with Next.js, React, Tailwind, NestJS",
     description:
-      "Learn essential computer skills, including Microsoft Word, typing techniques, and Excel basics for office productivity.",
-    price: "MWK 4,000 per week",
-    duration: "3 hours per week",
-    path: "/courses/basic-computer",
+      "Master full-stack development by integrating frontend and backend technologies. Build complete web applications from scratch.",
+    price: "MWK 12,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/fullstack",
     icons: [
-      { src: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Microsoft_Office_Word_%282013%E2%80%932019%29.svg", alt: "Microsoft Word" },
-      { src: "https://upload.wikimedia.org/wikipedia/commons/4/43/Microsoft_Office_Excel_%282013-2019%29.svg", alt: "Excel" },
-      { src: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Keyboard-icon.svg", alt: "Typing" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg", alt: "Next.js" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", alt: "React" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg", alt: "Tailwind CSS" },
+      { src: "https://nestjs.com/img/logo_text.svg", alt: "NestJS" },
+    ],
+  },
+  {
+    title: "Mobile Application Development with Flutter",
+    description:
+      "Learn how to build cross-platform mobile applications using Flutter. Gain hands-on experience in UI design and state management.",
+    price: "MWK 15,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/flutter",
+    icons: [
+      { src: "https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png", alt: "Flutter" },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png", alt: "Dart" },
+    ],
+  },
+  {
+    title: "Introduction to Java Programming",
+    description:
+      "Get started with Java programming. Learn the basics of object-oriented programming, data structures, and algorithm design.",
+    price: "MWK 5,000 per week",
+    duration: "4 hours per week",
+    path: "/courses/java",
+    icons: [
+      { src: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg", alt: "Java" },
     ],
   },
 ];
 
-const CourseCard = ({ title, description, price, duration, path, icons }) => {
-  return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all relative">
-      {/* Icons on Top */}
-      <div className="flex justify-center space-x-4 mb-4">
-        {icons.map((icon, index) => (
-          <div
-            key={index}
-            className="p-2 bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform"
-          >
-            <img src={icon.src} alt={icon.alt} className="w-12 h-12 rounded-full" />
-          </div>
-        ))}
-      </div>
-
-      <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-      <p className="text-gray-700 mt-2">{description}</p>
-      <p className="text-green-600 font-bold mt-3">{price}</p>
-      <p className="text-gray-500">{duration}</p>
-      <Link to={path}>
-        <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all">
-          Enroll Now
-        </button>
-      </Link>
-    </div>
-  );
-};
-
 const Train = () => {
   return (
-    <div className="container mx-auto px-6 py-12">
-      <h2 className={`${styles.sectionHeadText}`}>Online Website Training Courses</h2>
-
-      <p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-        Our tech training school is dedicated to equipping learners with the latest
-        industry-relevant skills in software development and basic computer literacy.
-      </p>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-        {trainCourses.map((course, index) => (
-          <CourseCard key={index} {...course} />
-        ))}
+    <section className="py-10 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Explore Our Training Courses
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {trainCourses.map((course, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="flex justify-center mb-4">
+                {course.icons.map((icon, i) => (
+                  <img
+                    key={i}
+                    src={icon.src}
+                    alt={icon.alt}
+                    className="h-10 w-10 mx-2 hover:scale-110 transition-transform"
+                  />
+                ))}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">{course.title}</h3>
+              <p className="text-gray-600 mt-2">{course.description}</p>
+              <p className="text-gray-800 font-bold mt-2">{course.price}</p>
+              <p className="text-gray-500">{course.duration}</p>
+              <Link to={course.path} className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+                Enroll Now
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
