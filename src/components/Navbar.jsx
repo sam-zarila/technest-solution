@@ -42,10 +42,10 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
+          <img src={'https://i.pinimg.com/736x/2f/f6/29/2ff6297a5c6f65285a678f4652b71ec7.jpg'} alt='logo' className='w-9 h-9 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Technest &nbsp;
-            <span className='sm:block hidden'> | Software Solutions</span>
+            <span className='sm:block hidden'> | Software Solutions and online web training School </span>
           </p>
         </Link>
 

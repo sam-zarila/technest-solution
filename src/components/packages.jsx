@@ -51,10 +51,19 @@ const PackagesPage = () => {
                 Quick contacts
              </div>
              <div className="flex justify-center space-x-6">
-             <FaWhatsapp size={30} className="text-green-500 cursor-pointer hover:text-green-700" />
-             <FaFacebook size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
-             <FaTwitter size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
-             <FaMobile size={30} className="text-purple-500 cursor-pointer hover:text-green-700" />
+              <a href="https://wa.me/265899622111" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp size={30} className="text-green-500 cursor-pointer hover:text-green-700" />
+              </a>
+             <a href="https://www.facebook.com/profile.php?id=61574426800189" target="_blank" rel="noopener noreferrer">
+              <FaFacebook size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
+              </a>
+             <a href="https://x.com/badboy_trox99" target="_blank" rel="noopener noreferrer">
+              <FaTwitter size={30} className="text-blue-500 cursor-pointer hover:text-blue-700" />
+              </a>
+             <a href="tel:+265899622111" target="_blank" rel="noopener noreferrer">
+              <FaMobile size={30} className="text-purple-500 cursor-pointer hover:text-green-700" />
+             </a>
+             
              </div>
           </motion.div>
         ))}

@@ -34,11 +34,13 @@ const App = () => {
                 <About />
                 <Experience />
                 <Tech />
+                <PackagesPage />
                 <Works />
+             
                 <Train />
                 <Feedbacks />
                 <TeamPage />
-                <PackagesPage />
+                
                 <div className='relative z-0'>
                   <Contact />
                   <StarsCanvas />

@@ -44,17 +44,22 @@ const About = () => {
       </motion.div>
 
       <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
-      >
-        At TechNest Software Solutions, we specialize in designing and developing  
-        modern websites, mobile applications, and custom software solutions.  
-        Our expertise spans JavaScript, TypeScript, React, Nestjs, Fluuter,Kotlin, 
-        Firebase,superBase,python and Node.js , and  
-        cutting-edge frameworks to build scalable, efficient, and user-friendly**  
-        digital experiences. We collaborate closely with clients to turn  
-        ideas into reality et’s innovate together!
-      </motion.p>
+  variants={fadeIn("", "", 0.1, 1)}
+  className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
+>
+  At TechNest Software Solutions, we specialize in designing and developing  
+  modern websites, mobile applications, and custom software solutions.  
+  Our expertise spans JavaScript, TypeScript, React, NestJS, Flutter, Kotlin,  
+  Firebase, Superbase, Python, and Node.js—leveraging cutting-edge frameworks  
+  to build scalable, efficient, and user-friendly digital experiences.  
+
+  Beyond development, we empower aspiring developers and tech enthusiasts  
+  through our <span className="text-[#915EFF] font-bold">Web Training School</span>,  
+  offering hands-on learning in web and mobile technologies.  
+
+  We collaborate closely with clients to turn ideas into reality—let’s innovate together!
+</motion.p>
+
 
 
       <div className='mt-20 flex flex-wrap gap-10'>
