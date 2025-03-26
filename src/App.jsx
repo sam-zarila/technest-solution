@@ -14,6 +14,7 @@ import JavaCourse from "./courses/java/JavaCourse";
 import TrainingCourse from "./courses/training/Training";
 import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
 import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
+import VideoSection from "./components/video";
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
                 <Tech />
                 <PackagesPage />
                 <Works />
+                <VideoSection />
              
                 <Train />
                 <Feedbacks />
