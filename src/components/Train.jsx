@@ -74,7 +74,7 @@ const trainCourses = [
       "Learn essential computer skills, including Microsoft Word, typing techniques, and Excel basics for office productivity.",
     price: "MWK 4,000 per week",
     duration: "3 hours per week",
-    path: "/courses/basic-computer",
+    path: "/courses/training",
     icons: [
       { src: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Microsoft_Office_Word_%282013%E2%80%932019%29.svg", alt: "Microsoft Word" },
       { src: "https://upload.wikimedia.org/wikipedia/commons/4/43/Microsoft_Office_Excel_%282013-2019%29.svg", alt: "Excel" },

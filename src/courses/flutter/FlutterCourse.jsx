@@ -6,45 +6,45 @@ import { FaVideo, FaYoutube } from "react-icons/fa";
 import { SiZoom } from "react-icons/si";
 
 const frontEndCourse = {
-  title: "Frontend Development with Next.js, React, and Tailwind",
+  title: "Mobile App Development With Flutter",
   description:
-    "Learn the fundamentals of frontend development using modern technologies. Build fast, responsive websites with state-of-the-art tools.",
-  price: "MWK 6,000 per week",
+    "Learn to build high-performance mobile applications using Flutter. Master Dart programming and create beautiful, responsive UI components.",
+  price: "MWK 8,000 per week",
   duration: "12 Weeks",
   levels: [
     {
-      name: "Introduction to Web Development (1-4 weeks)",
+      name: "Introduction to Flutter & Dart (1-4 weeks)",
       topics: [
-        "Understanding how websites work",
-        "Overview of HTML, CSS, and JavaScript",
-        "Setting up your development environment (VS Code, Node.js, Git)",
+        "Understanding mobile development",
+        "Setting up Flutter and Dart environment",
+        "Flutter widgets and UI basics",
+        "Stateful vs Stateless widgets",
       ],
     },
     {
-      name: "HTML & CSS Essentials (4-8 weeks)",
+      name: "Building UI & Navigation (4-8 weeks)",
       topics: [
-        "HTML structure and semantics",
-        "CSS basics: Selectors, Box Model, Flexbox, and Grid",
-        "Responsive design with Media Queries",
-        "Building a simple website",
+        "Layouts and responsive design",
+        "Navigation and Routing",
+        "Handling user input and forms",
+        "Using themes and styles",
       ],
     },
     {
-      name: "React.js Essentials (8-12 weeks)",
+      name: "Advanced Flutter Concepts (8-12 weeks)",
       topics: [
-        "Introduction to React and JSX",
-        "Components, Props, and State",
-        "Handling Events and Forms",
-        "Tailwind CSS",
-        "Building a web portfolio",
+        "State management techniques (Provider, Riverpod, Bloc)",
+        "Fetching and handling API data",
+        "Database integration (Hive, SQLite, Firebase)",
+        "Animations and Performance Optimization",
       ],
     },
     {
       name: "Final Project (1 week)",
       topics: [
-        "Full-featured web app (E-commerce, Dashboard, or Blog)",
-        "Integrating APIs and third-party libraries",
-        "Deployment",
+        "Building a full-featured mobile app",
+        "Testing and debugging",
+        "Deployment to Play Store and App Store",
       ],
     },
   ],
@@ -58,9 +58,8 @@ const frontEndCourse = {
 
 const learningPrerequisites = [
   "Basic understanding of using a computer",
-  "Internet browsing skills",
-  "Interest in web development",
-  "No prior coding experience needed",
+  "Interest in mobile app development",
+  "No prior programming experience needed",
 ];
 
 const weeklySchedule = [
@@ -68,6 +67,7 @@ const weeklySchedule = [
   { day: "Wednesday", hours: "1 Hour - Hands-on Practice" },
   { day: "Friday", hours: "1 Hour - Project Work" },
 ];
+
 
 const CourseDetailCard = ({ title, description, price, duration, levels, trainingModes }) => {
   const navigate = useNavigate();
@@ -77,10 +77,10 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
       {/* Icons Section */}
       <div className="flex justify-center space-x-6 mb-6">
         {[
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s", alt: "HTML" },
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s", alt: "CSS" },
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s", alt: "JavaScript" },
-          { src: "https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png", alt: "React" },
+          { src: "https://i.pinimg.com/736x/44/51/b1/4451b16f14d94961bbc5a1a29c2d3459.jpg", alt: "HTML" },
+          { src: "https://i.pinimg.com/736x/7e/9f/82/7e9f82f94f7f24667e19193a90bb3be1.jpg", alt: "CSS" },
+          { src: "https://i.pinimg.com/736x/5a/81/46/5a814660c6e142c48f5d7241c45e4597.jpg", alt: "JavaScript" },
+          { src: "https://i.pinimg.com/736x/3d/6f/22/3d6f22dcf37c9aa5544a79a8ec343b85.jpg", alt: "React" },
         ].map((icon, index) => (
           <div key={index} className="p-3 bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform">
             <img src={icon.src} alt={icon.alt} className="w-14 h-14 rounded-full" />
@@ -116,7 +116,7 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
 
       {/* Enroll Button */}
       <button
-        onClick={() => navigate("/shop/fullstack")}
+        onClick={() => navigate("/shop/flutter")}
         className="mt-6 w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition"
       >
         Enroll in Course
@@ -125,7 +125,7 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
   );
 };
 
-const FullstackCourse = () => {
+const FlutterCourse = () => {
   return (
     <motion.div variants={textVariant()} className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Left Side - Course Card */}
@@ -181,4 +181,4 @@ const FullstackCourse = () => {
   );
 };
 
-export default FullstackCourse;
+export default FlutterCourse;

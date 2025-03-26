@@ -8,6 +8,12 @@ import BackendCourse from "./courses/Backend/BackendCourse";
 import PackagesPage from "./components/packages";
 import ContactUs from "./contact/ContactUs";
 import BackendhoppingPage from "./shop/backend/ShopBackendCourse";
+import FullstackCourse from "./courses/fullstack/FullStackCourse";
+import FlutterCourse from "./courses/flutter/FlutterCourse";
+import JavaCourse from "./courses/java/JavaCourse";
+import TrainingCourse from "./courses/training/Training";
+import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
+import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
 
 const App = () => {
   return (
@@ -44,11 +50,18 @@ const App = () => {
           {/* Route to FrontEndCourse Page */}
           <Route path="/courses/frontend" element={<FrontEndCourse />} />
           <Route path="/courses/Backend" element={<BackendCourse />} />
+          <Route path="/courses/fullstack" element={<FullstackCourse />} />
+          <Route path="/courses/flutter" element={< FlutterCourse />} />
+          <Route path="/courses/java" element={< JavaCourse />} />
+          <Route path="/courses/training" element={< TrainingCourse />} />
+
           <Route path="/contact" element={<ContactUs />} />
 
           {/* Route to Course Shopping Page */}
           <Route path="/shop" element={<ShopCourse />} /> 
           <Route path="/shop/backend" element={<BackendhoppingPage />} /> 
+          <Route path="/shop/fullstack" element={<BackendhoppingPage />} /> 
+          <Route path="/shop/flutter" element={<FlutterShoppingPage />} />
           
         </Routes>
       </div>

@@ -116,7 +116,7 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
 
       {/* Enroll Button */}
       <button
-        onClick={() => navigate("/shop/fullstack")}
+        onClick={() => navigate("/shop")}
         className="mt-6 w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition"
       >
         Enroll in Course
@@ -125,7 +125,7 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
   );
 };
 
-const FullstackCourse = () => {
+const JavaCourse = () => {
   return (
     <motion.div variants={textVariant()} className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Left Side - Course Card */}
@@ -181,4 +181,4 @@ const FullstackCourse = () => {
   );
 };
 
-export default FullstackCourse;
+export default JavaCourse;

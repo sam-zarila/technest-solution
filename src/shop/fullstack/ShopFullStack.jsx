@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const courseDetails = {
-  title: "Backend Development with NestJS, Python, and Firebase",
-  price: "MWK 10,000 per week",
+  title: "Full Stack Development with Next.js, React, Tailwind, NestJS",
+  price: "MWK 12,000 per week",
 };
 
-const BackendhoppingPage = () => {
+const FullstackShoppingPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,14 +24,14 @@ const BackendhoppingPage = () => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-      error: name === "amount" && value !== "10000" ? "Amount must be exactly MWK 10,000" : "",
+      error: name === "amount" && value !== "12,000" ? "Amount must be exactly MWK 12,000" : "",
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.amount !== "10000") {
-      setFormData((prev) => ({ ...prev, error: "Amount must be exactly MWK 10,000" }));
+    if (formData.amount !== "12,000") {
+      setFormData((prev) => ({ ...prev, error: "Amount must be exactly MWK 12,000" }));
       return;
     }
 
@@ -114,7 +114,7 @@ const BackendhoppingPage = () => {
               onChange={handleChange}
               required
               className="w-full p-3 mt-2 rounded-lg border border-gray-700 text-white bg-gray-800"
-              placeholder="Enter 10000"
+              placeholder="Enter 6000"
             />
             {formData.error && <p className="text-red-500 mt-2">{formData.error}</p>}
           </div>
@@ -182,4 +182,4 @@ const BackendhoppingPage = () => {
   );
 };
 
-export default BackendhoppingPage;
+export default FullstackShoppingPage;
