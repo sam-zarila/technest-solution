@@ -76,9 +76,10 @@ const trainCourses = [
     duration: "3 hours per week",
     path: "/courses/training",
     icons: [
-      { src: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Microsoft_Office_Word_%282013%E2%80%932019%29.svg", alt: "Microsoft Word" },
-      { src: "https://upload.wikimedia.org/wikipedia/commons/4/43/Microsoft_Office_Excel_%282013-2019%29.svg", alt: "Excel" },
-      { src: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Keyboard-icon.svg", alt: "Typing" },
+      { src: "https://i.pinimg.com/736x/3d/d4/57/3dd4570a291ac8aea3bba7aad8ae4f0e.jpg", alt: "HTML" },
+      { src: "https://i.pinimg.com/736x/24/a9/55/24a9551afc9fd2855a7fda5a9a11e511.jpg", alt: "CSS" },
+      { src: "https://i.pinimg.com/736x/cc/bc/7f/ccbc7fd36b31d4aa88a0a2c6df6c0de7.jpg", alt: "JavaScript" },
+      { src: "https://i.pinimg.com/736x/3d/6f/22/3d6f22dcf37c9aa5544a79a8ec343b85.jpg", alt: "React" },
     ],
   },
 ];
