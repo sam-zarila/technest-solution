@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaVideo, FaYoutube } from "react-icons/fa";
 import { SiZoom } from "react-icons/si";
 
-const frontEndCourse = {
+const FullstackCourse = {
   title: "Frontend Development with Next.js, React, and Tailwind",
   description:
     "Learn the fundamentals of frontend development using modern technologies. Build fast, responsive websites with state-of-the-art tools.",
@@ -181,4 +181,4 @@ const FrontEndCoursePage = () => {
   );
 };
 
-export default FrontEndCoursePage;
+export default FullstackCourse;
