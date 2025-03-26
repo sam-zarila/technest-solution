@@ -15,6 +15,7 @@ import TrainingCourse from "./courses/training/Training";
 import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
 import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
 
+
 const App = () => {
   return (
     <BrowserRouter>

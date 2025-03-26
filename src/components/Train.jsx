@@ -91,6 +91,10 @@ const Train = () => {
         <h2 className="text-3xl font-bold text-center text-gray-100 mb-6">
           Explore Our Training Courses
         </h2>
+          {/* <p className="text-lg text-gray-300 text-center max-w-3xl mb-10">
+        Learn the latest web technologies and frameworks with hands-on training from experts.  
+        Build real-world projects and accelerate your career in web development.
+      </p> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {trainCourses.map((course, index) => (
             <div
