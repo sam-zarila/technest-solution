@@ -123,7 +123,7 @@ const experiences = [
   {
     title: "Full Stack Developer",
     company_name: "Liwonde Private Hospital",
-    icon: tesla, // Replace with actual icon
+    icon: 'https://i.pinimg.com/736x/c8/a1/d1/c8a1d1aae359c5b988039bd92d622a9f.jpg', // Replace with actual icon
     iconBg: "#383E56",
     date: "2022 - 2024",
     points: [
@@ -135,7 +135,7 @@ const experiences = [
   {
     title: "Lead Developer",
     company_name: "University Connect SuperApp",
-    icon: shopify, // Replace with actual icon
+    icon: 'https://i.pinimg.com/736x/ed/a8/e5/eda8e59591f4bba7ec610248e458c813.jpg', // Replace with actual icon
     iconBg: "#E6DEDD",
     date: "2023 - Present",
     points: [
@@ -147,7 +147,7 @@ const experiences = [
   {
     title: "Software Developer",
     company_name: "HomeHub Malawi",
-    icon: meta, // Replace with actual icon
+    icon: 'https://i.pinimg.com/736x/ae/c4/9b/aec49b28e40706e7f5cb4ec92aefe961.jpg', // Replace with actual icon
     iconBg: "#383E56",
     date: "2023 - Present",
     points: [
@@ -163,27 +163,27 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+      "I thought it was impossible to make a website as beautiful as our product, but Technest proved me wrong.",
+    name: "Duncan Phiri",
+    designation: "IT Technician",
+    company: "Liwonde private Hospita",
+    image: "https://i.pinimg.com/736x/f9/fd/d4/f9fdd40fcee714678724a977777fd221.jpg",
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
+      "I've never met a web developer who truly cares about their clients' success like Technest does.",
+    name: "Mary Chirwa",
     designation: "COO",
     company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    image: "https://i.pinimg.com/736x/e8/16/83/e816838a82b22cc82c2a03ca8dd47655.jpg",
   },
   {
     testimonial:
       "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
+    name: "Chimwemwe Malunga",
     designation: "CTO",
     company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    image: "https://i.pinimg.com/736x/8d/0e/68/8d0e6806bc39326670fc41f9c0879ada.jpg",
   },
 ];
 
