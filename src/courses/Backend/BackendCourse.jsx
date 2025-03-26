@@ -4,10 +4,10 @@ import { fadeIn, textVariant } from "../../utils/motion";
 import { useNavigate } from "react-router-dom";
 
 const BackendCourse = {
-    title:"Backend Development with NestJS, Python, and Firebase",
+    title:"Backend Development with NestJS",
     description:
       "Dive into backend development with NestJS, Python, and Firebase. Learn how to build robust APIs and handle data management with ease.",
-    price : "MWk 20,000 per week",
+    price : "MWk 10,000 per week",
     duration: "18 weeks",
 
     level :[
@@ -117,7 +117,7 @@ const CourseDetailCard = ({ title, description, price, duration, level, training
       
       {/* Enroll Button */}
       <button
-        onClick={() => navigate("/shop")}
+        onClick={() => navigate("/shop/backend")}
         className="mt-6 w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 transition"
       >
         Enroll in Course

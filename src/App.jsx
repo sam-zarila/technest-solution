@@ -7,6 +7,7 @@ import TeamPage from "./components/Team";
 import BackendCourse from "./courses/Backend/BackendCourse";
 import PackagesPage from "./components/packages";
 import ContactUs from "./contact/ContactUs";
+import BackendhoppingPage from "./shop/backend/ShopBackendCourse";
 
 const App = () => {
   return (
@@ -46,7 +47,9 @@ const App = () => {
           <Route path="/contact" element={<ContactUs />} />
 
           {/* Route to Course Shopping Page */}
-          <Route path="/shop" element={<ShopCourse />} /> {/* Add this line for the shopping page */}
+          <Route path="/shop" element={<ShopCourse />} /> 
+          <Route path="/shop/backend" element={<BackendhoppingPage />} /> 
+          
         </Routes>
       </div>
     </BrowserRouter>
