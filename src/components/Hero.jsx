@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+
 
 const Hero = () => {
   return (
@@ -23,13 +23,13 @@ const Hero = () => {
     user interfaces, and scalable mobile applications.  
     <br className='sm:block hidden' />  
     Join our <span className="text-[#915EFF] font-bold">Web Training School</span>  
-    to master essential web technologies and digital skills.
+     to master essential     <br className='sm:block hidden' />  web technologies and digital skills.
   </p>
 </div>
 
       </div>
 
-      <ComputersCanvas />
+     
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
