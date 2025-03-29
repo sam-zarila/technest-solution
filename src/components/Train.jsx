@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 
-const trainCourses = [
+const initialCourses = [
   {
     title: "Frontend Development with Next.js, React, and Tailwind",
     description:
@@ -57,6 +57,31 @@ const trainCourses = [
     ],
   },
   {
+    title: "Forex Trading Essentials",
+    description:
+      "Learn the basics of forex trading including technical analysis, risk management, and trading strategies.",
+    price: "MWK 25,000 per week",
+    duration: "5 hours per week",
+    path: "/courses/forex",
+    icons: [
+      { src: "https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/54/81/c0/5481c0d7-8613-8e24-95c1-c797025a933d/source/512x512bb.jpg", alt: "Forex" },
+    ],
+  },
+  {
+    title: "Crypto Trading 101",
+    description:
+      "Explore the world of cryptocurrency trading, understand blockchain technology and develop trading strategies.",
+    price: "MWK 30,000 per week",
+    duration: "5 hours per week",
+    path: "/courses/crypto",
+    icons: [
+      { src: "https://i.pinimg.com/736x/8f/8c/2f/8f8c2fa88523d7a02c0ac25a1b1bfbb1.jpg", alt: "Crypto" },
+    ],
+  },
+];
+
+const extraCourses = [
+  {
     title: "Introduction to Java Programming",
     description:
       "Get started with Java programming. Learn the basics of object-oriented programming, data structures, and algorithm design.",
@@ -66,7 +91,6 @@ const trainCourses = [
     icons: [
       { src: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg", alt: "Java" },
     ],
-    
   },
   {
     title: "Basic Computer Training (Microsoft Word, Typing, Excel)",
@@ -85,18 +109,20 @@ const trainCourses = [
 ];
 
 const Train = () => {
+  // State to determine if extra courses should be shown
+  const [showMore, setShowMore] = useState(false);
+
+  // Combine the initial courses with extra courses based on state
+  const coursesToDisplay = showMore ? [...initialCourses, ...extraCourses] : initialCourses;
+
   return (
     <section className="py-10 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-gray-100 mb-6">
           Explore Our Training Courses
         </h2>
-          {/* <p className="text-lg text-gray-300 text-center max-w-3xl mb-10">
-        Learn the latest web technologies and frameworks with hands-on training from experts.  
-        Build real-world projects and accelerate your career in web development.
-      </p> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {trainCourses.map((course, index) => (
+          {coursesToDisplay.map((course, index) => (
             <div
               key={index}
               className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
@@ -120,6 +146,24 @@ const Train = () => {
               </Link>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center mt-8">
+          {/* Toggle Button */}
+          {showMore ? (
+            <button
+              onClick={() => setShowMore(false)}
+              className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
+            >
+              See Fewer Courses
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowMore(true)}
+              className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+            >
+              See More Courses
+            </button>
+          )}
         </div>
       </div>
     </section>
