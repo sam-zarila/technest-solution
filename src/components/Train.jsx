@@ -152,14 +152,14 @@ const Train = () => {
           {showMore ? (
             <button
               onClick={() => setShowMore(false)}
-              className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
+              className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
             >
               See Fewer Courses
             </button>
           ) : (
             <button
               onClick={() => setShowMore(true)}
-              className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
             >
               See More Courses
             </button>

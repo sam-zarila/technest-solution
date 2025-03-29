@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const courseDetails = {
@@ -14,10 +14,30 @@ const BackendhoppingPage = () => {
     course: courseDetails.title,
     error: "",
   });
-
   const [loading, setLoading] = useState(false);
-  const [checkoutUrl, setCheckoutUrl] = useState(null); // Checkout URL state
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
+ // Modal visibility state
+ useEffect(()=>{
+   const loadScript = (src) =>
+     new Promise((resolve, reject) => {
+       const script = document.createElement("script");
+       script.src = src;
+       script.async = true;
+       script.onload = resolve;
+       script.onerror = reject;
+       document.body.appendChild(script);
+     });
+
+     loadScript("https://code.jquery.com/jquery-3.6.0.min.js")
+    .then(() => loadScript("https://in.paychangu.com/js/popup.js"))
+    .catch((err) => console.error("Script loading failed:", err));
+
+    return () => {
+      document
+        .querySelectorAll("script[src*='jquery'], script[src*='paychangu']")
+        .forEach((script) => document.body.removeChild(script));
+    }
+   
+ },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,50 +48,22 @@ const BackendhoppingPage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.amount !== "10000") {
-      setFormData((prev) => ({ ...prev, error: "Amount must be exactly MWK 10,000" }));
+    if (formData.amount!== "10000") {
+      setFormData((prev) => ({...prev, error: "Amount must be exactly MWK 10,000" }));
       return;
     }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch("https://technestbackend-j9mo.onrender.com/payments/pay", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "*/*",
-        },
-        body: JSON.stringify({
-          amount: formData.amount,
-          email: formData.email,
-          name: formData.name,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data?.data?.checkout_url) {
-        setCheckoutUrl(data.data.checkout_url);
-        setShowModal(true); // Open modal
-      } else {
-        setFormData((prev) => ({
-          ...prev,
-          error: "Payment initiation failed. Please try again.",
-        }));
-      }
-    } catch (error) {
-      console.error("Payment Error:", error);
-      setFormData((prev) => ({
-        ...prev,
-        error: "An error occurred. Please try again later.",
-      }));
-    } finally {
-      setLoading(false);
+   if (!window.PaychanguCheckout) {
+      setFormData((prev) => ({ ...prev, error: "Payment gateway is still loading. Please wait." }));
+      return;
     }
-  };
+    setLoading(true);
+  }
+
+  
+
+
 
   return (
     <div className="p-6">
@@ -157,27 +149,7 @@ const BackendhoppingPage = () => {
       </div>
 
       {/* Modal for checkout */}
-      {showModal && checkoutUrl && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded"
-            >
-              Close
-            </button>
-            <h2 className="text-center text-xl font-bold mb-4">Complete Payment</h2>
-            <iframe
-              src={checkoutUrl}
-              width="100%"
-              height="500px"
-              frameBorder="0"
-              title="Payment Gateway"
-              className="border-0"
-            />
-          </div>
-        </div>
-      )}
+     
     </div>
   );
 };
