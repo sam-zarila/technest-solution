@@ -64,7 +64,7 @@ const CourseShoppingPage = () => {
     setLoading(true);
 
     window.PaychanguCheckout({
-      public_key: "pub-test-Z2fK1oH31qEvBjtf7FnBhp6CtMZ0vpMW", // replace this
+      public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC", // replace this
       tx_ref: "" + Math.floor(Math.random() * 1000000000 + 1),
       amount: formData.amount,
       currency: "MWK",
@@ -122,7 +122,7 @@ const CourseShoppingPage = () => {
             <input
               type="number"
               name="amount"
-              placeholder="Enter 6000"
+              placeholder="Enter 10000"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.amount}
               onChange={handleChange}

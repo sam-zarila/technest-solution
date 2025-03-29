@@ -5,67 +5,64 @@ import { useNavigate } from "react-router-dom";
 import { FaVideo, FaYoutube } from "react-icons/fa";
 import { SiZoom } from "react-icons/si";
 
-const frontEndCourse = {
-  title: "Frontend Development with Next.js, React, and Tailwind",
+const fullStackCourse = {
+  title: "Full Stack Development with Next.js, React, Tailwind & NestJS",
   description:
-    "Learn the fundamentals of frontend development using modern technologies. Build fast, responsive websites with state-of-the-art tools.",
-  price: "MWK 6,000 per week",
-  duration: "12 Weeks",
+    "Master both frontend and backend development by building modern web applications. Learn to create dynamic UIs with React and Tailwind CSS and robust APIs with NestJS.",
+  price: "MWK 12,000 per week",
+  duration: "16 Weeks",
   levels: [
     {
-      name: "Introduction to Web Development (1-4 weeks)",
+      name: "Foundations & Environment Setup (Weeks 1-3)",
       topics: [
-        "Understanding how websites work",
-        "Overview of HTML, CSS, and JavaScript",
-        "Setting up your development environment (VS Code, Node.js, Git)",
+        "Overview of full stack development",
+        "Setting up Node.js, Next.js, and NestJS environments",
+        "Introduction to Git and version control",
       ],
     },
     {
-      name: "HTML & CSS Essentials (4-8 weeks)",
+      name: "Frontend Fundamentals (Weeks 4-7)",
       topics: [
-        "HTML structure and semantics",
-        "CSS basics: Selectors, Box Model, Flexbox, and Grid",
-        "Responsive design with Media Queries",
-        "Building a simple website",
+        "Building UI components with React and Next.js",
+        "Styling with Tailwind CSS",
+        "Responsive design and performance optimization",
       ],
     },
     {
-      name: "React.js Essentials (8-12 weeks)",
+      name: "Backend Fundamentals (Weeks 8-11)",
       topics: [
-        "Introduction to React and JSX",
-        "Components, Props, and State",
-        "Handling Events and Forms",
-        "Tailwind CSS",
-        "Building a web portfolio",
+        "Introduction to NestJS architecture",
+        "Creating RESTful APIs and GraphQL endpoints",
+        "Database integration and authentication",
       ],
     },
     {
-      name: "Final Project (1 week)",
+      name: "Integration & Final Project (Weeks 12-16)",
       topics: [
-        "Full-featured web app (E-commerce, Dashboard, or Blog)",
-        "Integrating APIs and third-party libraries",
-        "Deployment",
+        "Connecting frontend with backend services",
+        "Advanced state management and API consumption",
+        "Deployment and scaling full stack applications",
       ],
     },
   ],
   trainingModes: [
-    "Online Classes",
-    "Recorded Videos",
-    "Hands-on Activities",
-    "Projects",
+    "Live Online Classes",
+    "Recorded Sessions",
+    "Hands-on Labs",
+    "Real-World Projects",
   ],
 };
 
 const learningPrerequisites = [
-  "Basic understanding of using a computer",
-  "Internet browsing skills",
-  "Interest in web development",
-  "No prior coding experience needed",
+  "Basic understanding of programming concepts",
+  "Familiarity with JavaScript",
+  "Interest in building complete web applications",
+  "No prior experience with full stack development needed",
 ];
 
 const weeklySchedule = [
-  { day: "Monday", hours: "2 Hours - Online Class" },
-  { day: "Wednesday", hours: "1 Hour - Hands-on Practice" },
+  { day: "Monday", hours: "2 Hours - Live Class" },
+  { day: "Wednesday", hours: "1 Hour - Hands-on Labs" },
   { day: "Friday", hours: "1 Hour - Project Work" },
 ];
 
@@ -77,10 +74,10 @@ const CourseDetailCard = ({ title, description, price, duration, levels, trainin
       {/* Icons Section */}
       <div className="flex justify-center space-x-6 mb-6">
         {[
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s", alt: "HTML" },
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeB0Kf8bAgxekAzMETw0PwdbibAGCa2FrfDQ&s", alt: "CSS" },
-          { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ4qe-TiNdb7kONl0a1C3a1R3H9TPWKSJeGg&s", alt: "JavaScript" },
-          { src: "https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png", alt: "React" },
+          { src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg", alt: "Next.js" },
+          { src: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", alt: "React" },
+          { src: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg", alt: "Tailwind CSS" },
+          { src: "https://nestjs.com/img/logo_text.svg", alt: "NestJS" },
         ].map((icon, index) => (
           <div key={index} className="p-3 bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform">
             <img src={icon.src} alt={icon.alt} className="w-14 h-14 rounded-full" />
@@ -130,53 +127,52 @@ const FullstackCourse = () => {
     <motion.div variants={textVariant()} className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Left Side - Course Card */}
       <div>
-        <h1 className="mt-16 text-center text-3xl text-white font-bold">Frontend Development Course</h1>
-        <CourseDetailCard {...frontEndCourse} />
+        <h1 className="mt-16 text-center text-3xl text-white font-bold">Full Stack Development Course</h1>
+        <CourseDetailCard {...fullStackCourse} />
       </div>
 
       {/* Right Side - Learning Prerequisites and Weekly Schedule */}
       <div className="bg-gray-800 p-4 rounded-xl shadow-lg text-white mt-24 max-h-[400px] overflow-auto">
-  <h2 className="text-2xl font-bold mb-4 text-center">Learning Roadmap</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Learning Roadmap</h2>
 
-  <h2 className="text-xl font-semibold mb-2">Learning Prerequisites</h2>
-  <ul className="list-disc list-inside text-gray-300 text-sm mb-4">
-    {learningPrerequisites.map((prereq, index) => (
-      <li key={index}>{prereq}</li>
-    ))}
-  </ul>
+        <h2 className="text-xl font-semibold mb-2">Learning Prerequisites</h2>
+        <ul className="list-disc list-inside text-gray-300 text-sm mb-4">
+          {learningPrerequisites.map((prereq, index) => (
+            <li key={index}>{prereq}</li>
+          ))}
+        </ul>
 
-  <h2 className="text-xl font-semibold mb-2">4-Hour Weekly Learning Schedule</h2>
-  <table className="w-full border border-gray-700 text-sm">
-    <thead>
-      <tr className="bg-gray-700">
-        <th className="py-1 px-2 border border-gray-600">Day</th>
-        <th className="py-1 px-2 border border-gray-600">Hours</th>
-      </tr>
-    </thead>
-    <tbody>
-      {weeklySchedule.map((item, index) => (
-        <tr key={index} className="bg-gray-900 text-center">
-          <td className="py-1 px-2 border border-gray-600">{item.day}</td>
-          <td className="py-1 px-2 border border-gray-600">{item.hours}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-  <div className="flex justify-center space-x-6 mt-4">
-        <a href="https://zoom.us/" target="_blank" rel="noopener noreferrer">
-          <SiZoom className="text-blue-500 text-3xl hover:text-blue-700" />
-        </a>
+        <h2 className="text-xl font-semibold mb-2">4-Hour Weekly Learning Schedule</h2>
+        <table className="w-full border border-gray-700 text-sm">
+          <thead>
+            <tr className="bg-gray-700">
+              <th className="py-1 px-2 border border-gray-600">Day</th>
+              <th className="py-1 px-2 border border-gray-600">Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            {weeklySchedule.map((item, index) => (
+              <tr key={index} className="bg-gray-900 text-center">
+                <td className="py-1 px-2 border border-gray-600">{item.day}</td>
+                <td className="py-1 px-2 border border-gray-600">{item.hours}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="flex justify-center space-x-6 mt-4">
+          <a href="https://zoom.us/" target="_blank" rel="noopener noreferrer">
+            <SiZoom className="text-blue-500 text-3xl hover:text-blue-700" />
+          </a>
 
-        <a href="https://meet.google.com/mbd-iovi-csd" target="_blank" rel="noopener noreferrer">
-          <FaVideo className="text-green-500 text-3xl hover:text-green-700" />
-        </a>
+          <a href="https://meet.google.com/mbd-iovi-csd" target="_blank" rel="noopener noreferrer">
+            <FaVideo className="text-green-500 text-3xl hover:text-green-700" />
+          </a>
 
-        <a href="https://www.youtube.com/channel/UCrm1eI4AOp2J33k95oTDReg" target="_blank" rel="noopener noreferrer">
-          <FaYoutube className="text-red-500 text-3xl hover:text-red-700" />
-        </a>
+          <a href="https://www.youtube.com/channel/UCrm1eI4AOp2J33k95oTDReg" target="_blank" rel="noopener noreferrer">
+            <FaYoutube className="text-red-500 text-3xl hover:text-red-700" />
+          </a>
+        </div>
       </div>
-</div>
-
     </motion.div>
   );
 };
