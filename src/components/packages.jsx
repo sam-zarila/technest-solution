@@ -8,7 +8,7 @@ import {
 
 const packages = [
   {
-    title: "Simple Website",
+    title: "standard Website",
     price: "MWK 250,000",
     description:
       "Best for advertisement and online presence. Ideal for small businesses, portfolios, and blogs.",
@@ -22,7 +22,7 @@ const packages = [
     ]
   },
   {
-    title: "Full Stack Website",
+    title: "professional Website",
     price: "MWK 500,000",
     description:
       "Complete management systems for hotels, hospitals, e-commerce, and more with backend integration.",
