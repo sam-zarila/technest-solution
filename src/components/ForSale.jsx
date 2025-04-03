@@ -55,7 +55,7 @@ const Buy = () => {
         "Discover more ways of music listening with Spotify Premium, unlock advanced features of Spotify with premium",
       image:
         "https://i.pinimg.com/736x/6c/ba/74/6cba747f7bd375dc945fcf3219bca5c8.jpg",
-      price: "Mwk 1500",
+      price: "Mwk 15000",
       buttonText: "Buy Now",
     },
     {
