@@ -28,8 +28,8 @@ const Forsale = ({ slide, index }) => {
           <p className="mt-2 text-secondary text-[14px]">{slide.description}</p>
           <p className="text-lg text-green-400 font-semibold">{slide.price}</p>
         </div>
-        <div className="mt-4">
-          <button className="bg-primary py-2 px-4 rounded-md text-white">
+        <div className="mt-4  ">
+          <button className="bg-blue-900 py-2 px-4 rounded-md text-white">
             {slide.buttonText}
           </button>
         </div>
@@ -46,16 +46,16 @@ const Buy = () => {
         "Unlock the full potential of ChatGPT with advanced models and unlimited reasoning power.",
       image:
         "https://i.pinimg.com/736x/cd/06/3b/cd063b24ea3e1f8d65d870cb810ab8a0.jpg",
-      price: "Mwk 15000",
+      price: "Mwk 15,000 /month",
       buttonText: "Buy Now",
     },
     {
       title: "Spotify Premium",
       description:
-        "Discover more ways of music listening with Spotify Premium, unlock advanced features of Spotify with premium",
+        "Discover more ways of music listening with Spotify Premium",
       image:
         "https://i.pinimg.com/736x/6c/ba/74/6cba747f7bd375dc945fcf3219bca5c8.jpg",
-      price: "Mwk 15000",
+      price: "Mwk 1,500/ month",
       buttonText: "Buy Now",
     },
     {
@@ -64,7 +64,7 @@ const Buy = () => {
         "Unlock the full potential of Apple Music with unlimited songs and albums.",
       image:
         "https://i.pinimg.com/736x/18/bb/eb/18bbebfc20a413408b4301c5d61b8752.jpg",
-      price: "Mwk 2000",
+      price: "Mwk 2,000/ month",
       buttonText: "Buy Now",
     },
     {
@@ -73,7 +73,7 @@ const Buy = () => {
         "Unlock the full potential of Netflix with unlimited movies, TV shows, and movies.",
       image:
         "https://i.pinimg.com/736x/14/07/10/14071047f28bcb31ddf9f3209100382c.jpg",
-      price: "Mwk 2500",
+      price: "Mwk 2,500/ month",
       buttonText: "Buy Now",
     },
     {
@@ -82,7 +82,7 @@ const Buy = () => {
         "Unlock the full potential of Binance with unlimited free gift cards.",
       image:
         "https://i.pinimg.com/736x/94/30/a2/9430a2079e7759532e66cc4b2d6fc00a.jpg",
-      price: "Mwk 10000",
+      price: "Mwk 10,000 / month",
       buttonText: "Buy Now",
     },
   ];
