@@ -56,21 +56,21 @@ const Buy =()=>{
           {
             title:"Spotify Premium",
             description:"discover more ways of music listening with spotify Premium, unlock advanced features of spotify with premium",
-            image: "https://i.pinimg.com/736x/8a/0b/65/8a0b65c7273111a166d86965494d959c.jpg",
+            image: "https://i.pinimg.com/736x/6c/ba/74/6cba747f7bd375dc945fcf3219bca5c8.jpg",
             price:"Mwk 1500",
             buttonText: "Buy Now",
           },
           {
             title:'Apple Music',
             description:"Unlock the full potential of Apple Music with unlimited songs and albums.",
-            image: "https://i.pinimg.com/736x/d8/54/0e/d8540e8b565073c36d9926358970689f.jpg",
+            image: "https://i.pinimg.com/736x/18/bb/eb/18bbebfc20a413408b4301c5d61b8752.jpg",
             price:"Mwk 2000",
             buttonText: "Buy Now",
           },
           {
             title:"Netflix Premium",
             description:"Unlock the full potential of Netflix with unlimited movies, TV shows, and movies.",
-            image: "https://i.pinimg.com/736x/71/d9/49/71d949f1a48781198248939897d29741.jpg",
+            image: "https://i.pinimg.com/736x/14/07/10/14071047f28bcb31ddf9f3209100382c.jpg",
             price:"Mwk 2500",
             buttonText: "Buy Now",
             
