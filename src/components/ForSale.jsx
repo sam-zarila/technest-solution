@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Tilt } from "react-tilt"
 
 import { motion } from "framer-motion";
@@ -74,27 +75,47 @@ const Buy =()=>{
             price:"Mwk 2500",
             buttonText: "Buy Now",
             
+          },
+          {
+            title:"Binance Gift Card",
+            description:"Unlock the full potential of Binance with unlimited free gift cards.",
+            image: "https://i.pinimg.com/736x/94/30/a2/9430a2079e7759532e66cc4b2d6fc00a.jpg",
+            price:"Mwk 10000",
+            buttonText: "Buy Now",
           }
     ];
     const [currentSlide, setCurrentSlide] = useState(0);
+  const slideInterval = 5000; // slide change every 3 seconds
 
-    const nextSlide = () => {
-        if (slides.length > 1) {
-          setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-        }
-      };
-    
-      const prevSlide = () => {
-        if (slides.length > 1) {
-          setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-        }
-      };
+  // Auto slide effect
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      setCurrentSlide((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
+    }, slideInterval);
+
+    return () => clearInterval(autoSlide);
+  }, [slides.length]);
+
+  // Navigation functions (if needed)
+  const nextSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === slides.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? slides.length - 1 : prev - 1
+    );
+  };
 
       return(
         <section className="py-10">
             <motion.div variants={textVariant()}>
             <p className={`${styles.sectionSubText}`}>Our Product</p>
-            <h2 className={`${styles.sectionHeadText}`}>ChatGPT Plus</h2>
+            <h2 className={`${styles.sectionHeadText}`}>On re Sale</h2>
             </motion.div>
 
            <div className="mt-10 relative">
