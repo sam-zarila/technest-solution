@@ -1,3 +1,4 @@
+import { title } from "framer-motion/client";
 import {
   mobile,
   backend,
@@ -282,6 +283,8 @@ const courses = [
     buttonText: "Shop Course",
   },
 ];
+
+
 
 
 export { services, technologies, experiences, testimonials, projects,courses };

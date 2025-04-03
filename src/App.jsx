@@ -15,6 +15,9 @@ import TrainingCourse from "./courses/training/Training";
 import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
 import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
 import VideoSection from "./components/video";
+import ForSale from "./components/ForSale";
+
+
 
 
 const App = () => {
@@ -35,13 +38,16 @@ const App = () => {
                 </div>
                 <About />
                 <Experience />
-                <Tech />
+                <ForSale/>
                 <PackagesPage />
                 <Works />
                 <VideoSection />
              
                 <Train />
+            
                 <Feedbacks />
+            
+              {/* Add the carousel here */}
                 <TeamPage />
                 
                 <div className='relative z-0'>
