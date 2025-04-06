@@ -68,7 +68,7 @@ const CourseShoppingPage = () => {
       tx_ref: "" + Math.floor(Math.random() * 1000000000 + 1),
       amount: formData.amount,
       currency: "MWK",
-      callback_url: "https://technestsystems.netlify.app/", // replace this
+      callback_url: "https://technestsystems.netlify.app/registration", // replace this
       customer: {
         email: formData.email,
         first_name: formData.name.split(" ")[0],

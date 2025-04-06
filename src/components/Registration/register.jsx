@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const StudentCourseRegistrationForm = () => {
+  // Optionally, extract the transaction reference from the URL query parameters
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const txRef = queryParams.get("tx_ref");
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -36,6 +42,11 @@ const StudentCourseRegistrationForm = () => {
     <div className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
       <div className="max-w-xl w-full bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold text-center mb-6">Student Registration</h1>
+        {txRef && (
+          <p className="text-sm text-gray-600">
+            Transaction Reference: {txRef}
+          </p>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700">Full Name</label>
