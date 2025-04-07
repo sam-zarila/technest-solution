@@ -39,11 +39,11 @@ const StudentCourseRegistrationForm = () => {
   };
 
   return (
-    <div className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="p-6 mt-10 flex justify-center items-center min-h-screen bg-gray-900">
       <div className="max-w-xl w-full bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold text-center mb-6">Student Registration</h1>
         {txRef && (
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-center text-gray-600">
             Transaction Reference: {txRef}
           </p>
         )}

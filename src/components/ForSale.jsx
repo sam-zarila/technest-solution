@@ -134,7 +134,7 @@ const Buy = () => {
     <section className="py-10">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>on resale</p>
-        <h2 className={`${styles.sectionHeadText}`}>Virtual Products</h2>
+        <h2 className={`${styles.sectionHeadText}`}>Comming Soon...</h2>
       </motion.div>
 
       <div className="mt-10 relative">
