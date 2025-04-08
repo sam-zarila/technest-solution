@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
+import path from "path"; // If needed. Otherwise, it can be removed.
 
 // Slide component for ChatGPT Plus
 const ChatGPTPlusSlide = ({ slide, index }) => {
@@ -32,9 +34,12 @@ const ChatGPTPlusSlide = ({ slide, index }) => {
           </p>
         </div>
         <div className="mt-4">
-          <button className="bg-primary py-2 px-4 rounded-md text-white">
-            {slide.buttonText}
-          </button>
+          {/* Buy Now button linking to the path provided in slide details */}
+          <Link to={slide.path}>
+            <button className="bg-primary py-2 px-4 rounded-md text-white">
+              {slide.buttonText}
+            </button>
+          </Link>
         </div>
       </Tilt>
     </motion.div>
@@ -50,6 +55,7 @@ const Sales = () => {
         "Unlock the full potential of ChatGPT with advanced models and unlimited reasoning power.",
       image: "/path/to/chatgpt-plus-image1.jpg", // Replace with your actual image path
       buttonText: "Buy Now",
+      path: "/virtuals/spotify", // This path is used for the Link
     },
   ];
 

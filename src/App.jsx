@@ -16,6 +16,7 @@ import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
 import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
 import VideoSection from "./components/video";
 import ForSale from "./components/ForSale";
+import PaymentPage from "../virtuals/spotify/spotify";
 
 // Import your registration component
 import StudentCourseRegistrationForm from "./components/Registration/register";
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/shop/backend" element={<BackendhoppingPage />} /> 
           <Route path="/shop/fullstack" element={<BackendhoppingPage />} /> 
           <Route path="/shop/flutter" element={<FlutterShoppingPage />} />
+          <Route path="/virtuals/spotify" element={<PaymentPage />} />
         </Routes>
       </div>
     </BrowserRouter>
