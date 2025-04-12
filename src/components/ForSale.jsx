@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -19,7 +20,7 @@ const Forsale = ({ slide, index }) => {
         <div className="relative w-full h-[230px]">
           <img
             src={slide.image}
-            alt="ChatGPT Plus Slide"
+            alt={slide.title}
             className="w-full h-full object-cover rounded-2xl"
           />
         </div>
@@ -28,11 +29,15 @@ const Forsale = ({ slide, index }) => {
           <p className="mt-2 text-secondary text-[14px]">{slide.description}</p>
           <p className="text-lg text-green-400 font-semibold">{slide.price}</p>
         </div>
-        <div className="mt-4  ">
-          <button className="bg-blue-900 py-2 px-4 rounded-md text-white">
-            {slide.buttonText}
-          </button>
-        </div>
+        {slide.path && (
+          <div className="mt-6">
+            <Link to={slide.path}>
+              <button className="w-full bg-blue-700 text-white px-6 py-2 rounded-md hover:bg-blue-800 transition">
+                {slide.buttonText}
+              </button>
+            </Link>
+          </div>
+        )}
       </Tilt>
     </motion.div>
   );
@@ -48,68 +53,111 @@ const Buy = () => {
         "https://i.pinimg.com/736x/cd/06/3b/cd063b24ea3e1f8d65d870cb810ab8a0.jpg",
       price: "Mwk 15,000 /month",
       buttonText: "Buy Now",
+      path: "/virtuals/chatgpt",
     },
     {
       title: "Spotify Premium",
-      description:
-        "Discover more ways of music listening with Spotify Premium",
+      description: "Discover more ways of music listening with Spotify Premium",
       image:
         "https://i.pinimg.com/736x/6c/ba/74/6cba747f7bd375dc945fcf3219bca5c8.jpg",
-      price: "Mwk 1,500/ month",
+      price: "Mwk 3,000 /month",
       buttonText: "Buy Now",
+      path: "/virtuals/spotify",
     },
+
     {
       title: "Apple Music",
       description:
         "Unlock the full potential of Apple Music with unlimited songs and albums.",
       image:
         "https://i.pinimg.com/736x/18/bb/eb/18bbebfc20a413408b4301c5d61b8752.jpg",
-      price: "Mwk 2,000/ month",
+      price: "Mwk 3,500 /month",
       buttonText: "Buy Now",
+      path: "/virtuals/applemusic",
     },
     {
       title: "Netflix Premium",
       description:
-        "Unlock the full potential of Netflix with unlimited movies, TV shows, and movies.",
+        "Unlock the full potential of Netflix with unlimited movies, TV shows, and series.",
       image:
         "https://i.pinimg.com/736x/14/07/10/14071047f28bcb31ddf9f3209100382c.jpg",
-      price: "Mwk 2,500/ month",
+      price: "Mwk 5,000 /month",
       buttonText: "Buy Now",
+      path: "/virtuals/netflix",
+    },
+
+    {
+      title: "Exchange Yuan",
+      description:
+        "Looking for Chinese Yuan? You have Malawi Kwacha. We are here to help you exchange.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1QQxA8lnmfigxiImuwNqJVe7eH_DEfdOhDA&s",
+      price: "Mwk 1 = 580 yuan",
+      buttonText: "Contact us Now",
+      path: "/virtuals/netflix",
+    },
+   
+    {
+      title: "Bundle of Air Shipping",
+      description:
+        "Send us your parcels, let us weigh them and ship them to Malawi by air.",
+      image:
+        "https://static.vecteezy.com/system/resources/previews/038/043/646/non_2x/airplane-icon-in-color-aviation-transportation-travel-vector.jpg",
+      price: "Mwk 60,000 per 1kg",
+      buttonText: "Ship Now",
+      path: "/virtuals/shipping",
+    },
+
+    {
+      title: "Exchange USD",
+      description:
+        "Looking for USD? You have Malawi Kwacha. We are here to help you exchange.",
+      image:
+        "https://png.pngtree.com/png-vector/20190621/ourlarge/pngtree-usd-currency-icon-design-template-vector-illustration-isolated-png-image_1502457.jpg",
+      price: "$1 = 3800 Mwk",
+      buttonText: "Contact us Now",
+      path: "/virtuals/netflix",
     },
     {
-      title: "Binance Gift Card",
+      title: "Buy USDT",
       description:
-        "Unlock the full potential of Binance with unlimited free gift cards.",
+        "Looking for USDT? You have Malawi Kwacha. We are here to help you exchange.",
       image:
-        "https://i.pinimg.com/736x/94/30/a2/9430a2079e7759532e66cc4b2d6fc00a.jpg",
-      price: "Mwk 10,000 / month",
-      buttonText: "Buy Now",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-RTxmJSZCDiJHXSARXwIm2AJ95AyHpvz0nQ&s",
+      price: "USDT 1 = 4000 mwk",
+      buttonText: "Contact us Now",
+      path: "/virtuals/netflix",
     },
+    {
+      title: "Apply Loan",
+      description:
+        "Looking for Loan? we are here for you to provide loans for you collateral is a must.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7rJOZmDW5PobKNIpXCHORoKlmFs6DQyEG5Q&s",
+      price: "Mwk50,000 - 1,000,000 mwk",
+      buttonText: "Apply Now",
+      path: "/virtuals/netflix",
+    },
+
   ];
 
-  // Current slide index
   const [currentSlide, setCurrentSlide] = useState(0);
-  // Number of cards visible in the viewport (responsive)
   const [cardsToShow, setCardsToShow] = useState(3);
-  const slideInterval = 5000; // 5 seconds
+  const slideInterval = 5000;
 
-  // Update the number of cards to show based on window width
+  // Updating the number of cards based on screen size
   useEffect(() => {
     const updateCardsToShow = () => {
-      if (window.innerWidth < 768) {
-        setCardsToShow(1);
-      } else {
-        setCardsToShow(3);
-      }
+      setCardsToShow(window.innerWidth < 768 ? 1 : 3);
     };
     updateCardsToShow();
     window.addEventListener("resize", updateCardsToShow);
     return () => window.removeEventListener("resize", updateCardsToShow);
   }, []);
 
-  // Auto slide effect that respects the number of visible cards
   useEffect(() => {
     const autoSlide = setInterval(() => {
+      // If there are more than enough cards, reset to the first one
       setCurrentSlide((prev) =>
         prev === slides.length - cardsToShow ? 0 : prev + 1
       );
@@ -117,7 +165,6 @@ const Buy = () => {
     return () => clearInterval(autoSlide);
   }, [slides.length, cardsToShow]);
 
-  // Navigation functions (if you want to allow manual slide)
   const nextSlide = () => {
     setCurrentSlide((prev) =>
       prev === slides.length - cardsToShow ? 0 : prev + 1
@@ -133,8 +180,8 @@ const Buy = () => {
   return (
     <section className="py-10">
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText}`}>on resale</p>
-        <h2 className={`${styles.sectionHeadText}`}>Comming Soon...</h2>
+        <p className={`${styles.sectionSubText}`}>on resale virtual products</p>
+        <h2 className={`${styles.sectionHeadText}`}>Available now</h2>
       </motion.div>
 
       <div className="mt-10 relative">
