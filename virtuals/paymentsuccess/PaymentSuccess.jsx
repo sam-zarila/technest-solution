@@ -20,35 +20,69 @@ const PaymentSuccess = () => {
       setStatus("❌ Payment failed or cancelled.");
       return;
     }
-
     const saveOrder = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/orders/create", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            CustomerName: name || "Unknown",
-            email: email || "Unknown",
-            product,
-            purchaseDate: new Date().toISOString().split("T")[0],
-            price,
-            maxPeople: maxPeople || 1,
-            tx_ref,
-          }),
-        });
+        try {
+          const response = await fetch("http://localhost:3000/orders/create", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              CustomerName: name || "Unknown",
+              email: email || "Unknown",
+              product,
+              purchaseDate: new Date().toISOString().split("T")[0],
+              price,
+              maxPeople: maxPeople || 1,
+              tx_ref,
+            }),
+          });
+      
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.message || "Failed to save order.");
+      
+          setStatus("✅ Payment successful! Saving order...");
+      
+          // 👉 Fetch the order back using email
+          const fetchResponse = await fetch(`http://localhost:3000/orders/email/${email}`);
+          const userOrders = await fetchResponse.json();
+      
+          if (!fetchResponse.ok) throw new Error(userOrders.message || "Failed to fetch user order.");
+      
+          const userOrder = userOrders[0]; // Or filter by tx_ref if multiple
+          const password = "techn3St@2635chatPr3m" 
+      
+          // 👉 Download info
+          const downloadText = `
 
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.message || "Failed to save order.");
-
-        setStatus("✅ Payment successful! Order saved.");
-      } catch (err) {
-        console.error("🚫 Failed to save order:", err);
-        setStatus("⚠️ Payment went through, but saving order failed.");
-      }
-
-      setTimeout(() => navigate("/"), 4000);
-    };
-
+      Order Confirmation for ${userOrder.CustomerName}
+      ------------------------------------------------
+      CustomerName: ${userOrder.CustomerName}
+      Product: ${userOrder.product}
+      orderNumber: ${userOrder.orderNumber}
+      Amount: ${userOrder.price}
+      Email: ${userOrder.email}
+      Access email: patsondamascus@gmail.com 
+      Password: ${password}
+      purchaseDate:${userOrder.Date}
+      
+      NB : use the access email and password to access the product you have purchase Thank you!
+      ------------------------------------------------------------------------------------
+          `;
+      
+          const blob = new Blob([downloadText], { type: "text/plain" });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download =userOrder.CustomerName+" "+"order-details.txt";
+          link.click();
+      
+          setStatus("✅ Payment successful! Order saved and download ready.");
+        } catch (err) {
+          console.error("🚫 Failed:", err);
+          setStatus("⚠️ Payment went through, but something failed.");
+        }
+      
+        setTimeout(() => navigate("/"), 6000);
+      };
+      
     saveOrder();
   }, [searchParams, navigate]);
 
