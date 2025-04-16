@@ -22,7 +22,7 @@ const PaymentSuccess = () => {
     }
     const saveOrder = async () => {
         try {
-          const response = await fetch("http://localhost:3000/orders/create", {
+          const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -42,7 +42,7 @@ const PaymentSuccess = () => {
           setStatus("✅ Payment successful! Saving order...");
       
           // 👉 Fetch the order back using email
-          const fetchResponse = await fetch(`http://localhost:3000/orders/email/${email}`);
+          const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
           const userOrders = await fetchResponse.json();
       
           if (!fetchResponse.ok) throw new Error(userOrders.message || "Failed to fetch user order.");

@@ -60,7 +60,7 @@ const Buy = () => {
       description: "Discover more ways of music listening with Spotify Premium",
       image:
         "https://i.pinimg.com/736x/6c/ba/74/6cba747f7bd375dc945fcf3219bca5c8.jpg",
-      price: "Mwk 3,000 /month",
+      price: "Mwk 3,500 /month",
       buttonText: "Buy Now",
       path: "/virtuals/spotify",
     },

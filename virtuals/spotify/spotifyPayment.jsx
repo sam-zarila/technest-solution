@@ -69,8 +69,10 @@ const PaymentPage = () => {
       public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
       tx_ref,
       amount: formData.amount,
-      currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  `http://localhost:5173/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      currency: "MWK",   
+                   ///virtuals/chatgpt
+                   callback_url:` https://technestsystems265.site/Virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      // callback_url:  `http://localhost:5173/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -82,7 +84,7 @@ const PaymentPage = () => {
       },
       onclose: async () => {
         try {
-          const response = await fetch("http://localhost:3000/orders/create", {
+          const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
