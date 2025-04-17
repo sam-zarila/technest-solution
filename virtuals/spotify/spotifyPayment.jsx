@@ -71,7 +71,7 @@ const PaymentPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  ` https://technestsystems265.site/virtuals/paymentsuccess`,
+      callback_url:  ` https://technestsystems265.site/Virtuals/paymentsuccess`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
