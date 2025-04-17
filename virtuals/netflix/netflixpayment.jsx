@@ -70,7 +70,7 @@ const NetflixPaymentPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  `http://localhost:5173/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      callback_url:  ` https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
