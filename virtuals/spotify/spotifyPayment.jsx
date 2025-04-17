@@ -66,8 +66,8 @@ const PaymentPage = () => {
     const tx_ref = "TX-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
 
     window.PaychanguCheckout({
-      // public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
-      public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
+     public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
+      //public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
