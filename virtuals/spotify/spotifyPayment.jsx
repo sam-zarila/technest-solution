@@ -69,10 +69,8 @@ const PaymentPage = () => {
       public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
       tx_ref,
       amount: formData.amount,
-      currency: "MWK",   
-                   ///virtuals/chatgpt
-                   callback_url:` https://technestsystems265.site/Virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
-      // callback_url:  `http://localhost:5173/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      currency: "MWK",                ///virtuals/chatgpt
+      callback_url:  `http://localhost:5173/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
