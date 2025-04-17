@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import emailjs from "emailjs-com";  // Import EmailJS
+import emailjs from "@emailjs/browser";  // Import EmailJS
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
