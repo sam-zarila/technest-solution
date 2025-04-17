@@ -16,10 +16,15 @@ import FullstackShoppingPage from "./shop/fullstack/ShopFullStack";
 import FlutterShoppingPage from "./shop/flutter/ShopFlutter";
 import VideoSection from "./components/video";
 import ForSale from "./components/ForSale";
-import PaymentPage from "../virtuals/spotify/spotify";
+
 
 // Import your registration component
 import StudentCourseRegistrationForm from "./components/Registration/register";
+import PaymentPage from "../virtuals/spotify/spotifyPayment";
+import ChatgptPaymentPage from "../virtuals/chatgpt/chatgptpayents";
+import ApplemusicPaymentPage from "../virtuals/applemusic/applemusicpayment";
+import NetflixPaymentPage from "../virtuals/netflix/netflixpayment";
+import PaymentSuccess from "../virtuals/paymentsuccess/PaymentSuccess";
 
 const App = () => {
   return (
@@ -70,6 +75,10 @@ const App = () => {
           <Route path="/shop/fullstack" element={<BackendhoppingPage />} /> 
           <Route path="/shop/flutter" element={<FlutterShoppingPage />} />
           <Route path="/virtuals/spotify" element={<PaymentPage />} />
+          <Route path="/virtuals/chatgpt" element={<ChatgptPaymentPage />} />
+          <Route path="/virtuals/applemusic" element={<ApplemusicPaymentPage />} />
+          <Route path="/virtuals/netflix" element={<NetflixPaymentPage />} />
+          <Route path="/virtuals/paymentsuccess" element={<PaymentSuccess />} />
         </Routes>
       </div>
     </BrowserRouter>
