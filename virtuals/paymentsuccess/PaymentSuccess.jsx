@@ -11,7 +11,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const tx_ref = searchParams.get("tx_ref");
     const statusParam = searchParams.get("status");
-    const name = searchParams.get("CustomerName");
+    const name = searchParams.get("name");
     const email = searchParams.get("email");
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
