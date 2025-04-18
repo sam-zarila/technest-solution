@@ -56,7 +56,7 @@ const PaymentSuccess = () => {
         if (!response.ok) throw new Error(result.message || "Failed to save order.");
 
         setStatus("Payment Done✅ Order saved💾!");
-        setTimeout(() => navigate(""), 6000);
+      //  setTimeout(() => navigate(""), 6000);
 
         const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
         const userOrders = await fetchResponse.json();
@@ -74,7 +74,7 @@ const PaymentSuccess = () => {
         let downloadText = "";
 
         switch (userOrder.product.toLowerCase()) {
-          case "spotify premium":
+          case "Spotify Premium":
             downloadText = `
 🎧 Spotify Premium Access
 
@@ -209,7 +209,7 @@ Purchase Date: ${userOrder.purchaseDate}
         setTimeout(() => "", 5000);
       } catch (err) {
         console.error("🚫 Error:", err.message);
-        setStatus("⚠️ Payment went through, but there was an error processing your order.");
+       // setStatus("⚠️ Payment went through, but there was an error processing your order.");
       }
 
       setTimeout(() => navigate("/"), 9000);
@@ -231,7 +231,7 @@ Purchase Date: ${userOrder.purchaseDate}
         textAlign: "center",
       }}
     >
-      <h2>Payment Status</h2>
+      <h1>Payment Status</h1>
       <p>{status}</p>
 
       {order && (
