@@ -1,82 +1,117 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import emailjs from "@emailjs/browser";
+import emailjs from "emailjs-com";  // Import EmailJS;
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState("Verifying payment...");
+  const [order, setOrder] = useState(null); // 🆕 Added to store order details
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tx_ref     = searchParams.get("tx_ref");
-    const statusParam= searchParams.get("status");
+    const tx_ref = searchParams.get("tx_ref");
+    const statusParam = searchParams.get("status");
 
-    // Quick guards
-    if (!tx_ref) {
-      setStatus("❌ No transaction reference found.");
-      return;
-    }
-    if (statusParam === "failed") {
+    const name = searchParams.get("name");
+    const email = searchParams.get("email");
+    const product = searchParams.get("product");
+    const price = parseInt(searchParams.get("price"));
+    const maxPeople = parseInt(searchParams.get("maxPeople"));
+
+    console.log({ name, email, product, price, maxPeople });
+
+    if (!tx_ref || statusParam !== "successful") {
       setStatus("❌ Payment failed or cancelled.");
       return;
     }
 
-    // At this point we have a tx_ref (and no explicit failure flag) → proceed
-    const name      = searchParams.get("name")   || "Unknown";
-    const email     = searchParams.get("email")  || "Unknown";
-    const product   = searchParams.get("product")|| "Unknown product";
-    const price     = parseInt(searchParams.get("price"), 10) || 0;
-    const maxPeople = parseInt(searchParams.get("maxPeople"), 10) || 1;
+    if (!name || !email || !product || isNaN(price)) {
+      setStatus("⚠️ Missing data from payment. Cannot proceed.");
+      return;
+    }
 
     const saveOrder = async () => {
       try {
-        // 1️⃣ Save to your backend
-        const resp = await fetch(
-          "https://technestbackend-1.onrender.com/orders/create",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              CustomerName:  name,
-              email,
-              product,
-              purchaseDate: new Date().toISOString().split("T")[0],
-              price,
-              maxPeople,
-              tx_ref,
-            }),
-          }
-        );
-        const result = await resp.json();
-        if (!resp.ok) throw new Error(result.message || "Failed to save order.");
+        setStatus("💾 Saving order...");
 
-        setStatus("✅ Payment successful! Saving order...");
+        const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            CustomerName: name,
+            email,
+            product,
+            purchaseDate: new Date().toISOString().split("T")[0],
+            price,
+            maxPeople: maxPeople || 1,
+            tx_ref,
+          }),
+        });
 
-        // 2️⃣ Fetch back the saved order
-        const fetchResp  = await fetch(
-          `https://technestbackend-1.onrender.com/orders/email/${email}`
-        );
-        const userOrders = await fetchResp.json();
-        if (!fetchResp.ok) throw new Error(userOrders.message);
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || "Failed to save order.");
 
-        // pick the right order (you could filter by tx_ref here)
-        const userOrder = userOrders.find(o => o.tx_ref === tx_ref) || userOrders[0];
-        const password  = "techn3St@2635chatPr3m";
+        setStatus("✅ Order saved! Fetching details...");
 
-        // 3️⃣ Build download text
+        const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
+        const userOrders = await fetchResponse.json();
+
+        if (!Array.isArray(userOrders)) {
+          throw new Error("User orders are not in array format");
+        }
+
+        console.log(userOrders); // Log userOrders to debug the response structure
+
+        const userOrder = userOrders.find(order => order.tx_ref === tx_ref) || userOrders[0];
+        setOrder(userOrder); // 🆕 Store fetched order to display
+
+        const password = "techn3St@2635chatPr3m";
         let downloadText = "";
+
         switch (userOrder.product.toLowerCase()) {
           case "spotify premium":
             downloadText = `
 🎧 Spotify Premium Access
 
+Order Confirmation for ${userOrder.CustomerName}
+------------------------------------------------
+Customer Name: ${userOrder.CustomerName}
+Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
-Name:         ${userOrder.CustomerName}
-Amount Paid:  MWK ${userOrder.price}
-Date:         ${userOrder.Date}
+Amount Paid: MWK ${userOrder.price}
+Email Used: ${userOrder.email}
+Purchase Date: ${userOrder.purchaseDate}
 
-✅ Join via:
-https://www.spotify.com/mw/family/join/invite/A8cZ0X1bxCyYYab/
+✅ How to Join:
+1. Click this link: https://www.spotify.com/mw/family/join/invite/A8cZ0X1bxCyYYab/
+2. Log in with your personal Spotify account (or create one).
+3. Enter this address if prompted: Chancellor College, Zomba, Malawi
+4. Accept the invitation to join Spotify Premium.
+
+Enjoy your music! TechNest 🎶
+`;
+            break;
+
+          case "apple music":
+            downloadText = `
+🎧 Apple Music Premium Access
+
+Order Confirmation for ${userOrder.CustomerName}
+------------------------------------------------
+Customer Name: ${userOrder.CustomerName}
+Product: ${userOrder.product}
+Order Number: ${userOrder.orderNumber}
+Amount Paid: MWK ${userOrder.price}
+Email Used: ${userOrder.email}
+Purchase Date: ${userOrder.purchaseDate}
+
+✅ How to Join:
+1. Click this link: [Provide link]
+2. Log in with your Apple Music account (or create one).
+3. Enter this address if prompted: Chancellor College, Zomba, Malawi
+4. Accept the invitation.
+
+Enjoy your music! TechNest 🎶
 `;
             break;
 
@@ -84,13 +119,23 @@ https://www.spotify.com/mw/family/join/invite/A8cZ0X1bxCyYYab/
             downloadText = `
 📺 Netflix Premium Access
 
+Order Confirmation for ${userOrder.CustomerName}
+------------------------------------------------
+Customer Name: ${userOrder.CustomerName}
+Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
-Name:         ${userOrder.CustomerName}
-Email:        ${userOrder.email}
-Password:     ${password}
-Date:         ${userOrder.Date}
+Amount Paid: MWK ${userOrder.price}
+Email Used: ${userOrder.email}
+Access Email: patsondamascus@gmail.com
+Access Password: ${password}
+Purchase Date: ${userOrder.purchaseDate}
 
-✅ Visit https://www.netflix.com and log in with the above credentials.
+✅ How to Use:
+1. Visit https://www.netflix.com
+2. Log in using the access email and password above.
+3. Start streaming!
+
+Enjoy! TechNest 🍿
 `;
             break;
 
@@ -98,12 +143,23 @@ Date:         ${userOrder.Date}
             downloadText = `
 🤖 ChatGPT Plus Access
 
+Order Confirmation for ${userOrder.CustomerName}
+------------------------------------------------
+Customer Name: ${userOrder.CustomerName}
+Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
-Email:        patsondamascus@gmail.com
-Password:     ${password}
-Date:         ${userOrder.Date}
+Amount Paid: MWK ${userOrder.price}
+Email Used: ${userOrder.email}
+Access Email: patsondamascus@gmail.com
+Access Password: ${password}
+Purchase Date: ${userOrder.purchaseDate}
 
-✅ Visit https://chat.openai.com and log in with the above credentials.
+✅ How to Use:
+1. Visit https://chat.openai.com
+2. Log in with the access email and password above.
+3. Enjoy ChatGPT Plus features!
+
+Ask away! TechNest 🧠
 `;
             break;
 
@@ -111,61 +167,69 @@ Date:         ${userOrder.Date}
             downloadText = `
 📦 Order Details
 
+Order Confirmation for ${userOrder.CustomerName}
+------------------------------------------------
+Customer Name: ${userOrder.CustomerName}
+Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
-Name:         ${userOrder.CustomerName}
-Product:      ${userOrder.product}
-Amount Paid:  MWK ${userOrder.price}
-Date:         ${userOrder.Date}
+Amount Paid: MWK ${userOrder.price}
+Email Used: ${userOrder.email}
+Purchase Date: ${userOrder.purchaseDate}
 
-✅ Please check your email for complete access instructions.
+✅ Please check your product-specific instructions or contact support.
 `;
         }
 
-        // 4️⃣ Trigger download of the details text file
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = `${userOrder.CustomerName}-order.txt`;
+        link.download = `${userOrder.CustomerName}_order-details.txt`;
         link.click();
 
-        // 5️⃣ Send email receipt via EmailJS
         await emailjs.send(
           "service_s1fphcd",
           "template_sg0uioo",
           {
-            customer_name:  userOrder.CustomerName,
+            customer_name: userOrder.CustomerName,
             customer_email: userOrder.email,
-            product:         userOrder.product,
-            order_number:    userOrder.orderNumber,
-            amount_paid:     userOrder.price,
-            purchase_date:   userOrder.Date,
+            product: userOrder.product,
+            order_number: userOrder.orderNumber,
+            amount_paid: userOrder.price,
+            purchase_date: userOrder.purchaseDate,
           },
           "HlMFIQVluZ-Bfo1qv"
         );
 
-        setStatus(
-          "✅ Payment processed, order saved, download ready, and email sent!"
-        );
+        setStatus("✅ Payment successful! Order saved, email sent & download ready.");
+        setTimeout(() => "", 5000);
       } catch (err) {
-        console.error("🚫 Error in saveOrder:", err);
-        setStatus(
-          "⚠️ Payment succeeded, but an error occurred. Check console for details."
-        );
+        console.error("🚫 Error:", err.message);
+        //setStatus("⚠️ Payment went through, but there was an error processing your order.");
       }
 
-      // 6️⃣ Redirect home after showing status
       setTimeout(() => navigate("/"), 6000);
     };
 
     saveOrder();
   }, [searchParams, navigate]);
 
+  // 🆕 UI to show order details
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold mb-4">{status}</h1>
-        <p>Redirecting you to the homepage…</p>
-      </div>
+    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
+      <h2>Payment Status</h2>
+      <p>{status}</p>
+
+      {order && (
+        <div style={{ marginTop: "2rem", backgroundColor: "#f9f9f9", padding: "1rem", borderRadius: "8px" }}>
+          <h3>Order Details</h3>
+          <p><strong>Customer Name:</strong> {order.CustomerName}</p>
+          <p><strong>Product:</strong> {order.product}</p>
+          <p><strong>Order Number:</strong> {order.orderNumber}</p>
+          <p><strong>Amount Paid:</strong> MWK {order.price}</p>
+          <p><strong>Email:</strong> {order.email}</p>
+          <p><strong>Purchase Date:</strong> {order.purchaseDate}</p>
+        </div>
+      )}
     </div>
   );
 };
