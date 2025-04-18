@@ -203,20 +203,9 @@ Purchase Date: ${userOrder.purchaseDate}
         setStatus("✅ Payment successful! Order saved, email sent & download ready.");
         setTimeout(() => navigate("/"), 9000);
       } catch (err) {
-<<<<<<< HEAD
-        console.error("🚫 Error in saveOrder:", err);
-        setStatus(
-          "⚠️ Payment succeeded, check your network connection."
-        );
-      }
-
-      // 6️⃣ Redirect home after showing status
-      setTimeout(() => navigate("/"), 45000);
-=======
         console.error("🚫 Error:", err.message);
         setStatus("⚠️ Payment was successful, but an error occurred while processing your order.");
       }
->>>>>>> 2133392bdb37e1c12e53f1e7e659cfea9198a4fe
     };
 
     saveOrder();
@@ -240,7 +229,7 @@ Purchase Date: ${userOrder.purchaseDate}
       {order && (
         <div style={{
           marginTop: "2rem",
-          backgroundColor: "#f9f9f9",
+          backgroundColor: "black",
           padding: "1.5rem",
           borderRadius: "10px",
           maxWidth: "600px",
