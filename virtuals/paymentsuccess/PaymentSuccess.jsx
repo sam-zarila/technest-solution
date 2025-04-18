@@ -16,10 +16,8 @@ const PaymentSuccess = () => {
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
 
-    // 🔍 Debug all params
     console.log("SearchParams:", Object.fromEntries(searchParams.entries()));
 
-    // ✅ Accept multiple valid status responses
     const validStatuses = ["successful", "completed", "paid"];
     if (!tx_ref || (statusParam && !validStatuses.includes(statusParam.toLowerCase()))) {
       setStatus("❌ Payment failed or cancelled.");
@@ -28,10 +26,10 @@ const PaymentSuccess = () => {
 
     if (!name || !email || !product || isNaN(price)) {
       console.log("Query params received:");
-console.log("name:", name);
-console.log("email:", email);
-console.log("product:", product);
-console.log("price:", price);
+      console.log("name:", name);
+      console.log("email:", email);
+      console.log("product:", product);
+      console.log("price:", price);
 
       setStatus("⚠️ Missing data from payment. Cannot proceed.");
       return;
@@ -39,7 +37,7 @@ console.log("price:", price);
 
     const saveOrder = async () => {
       try {
-        setStatus("💾 Saving order...");
+        setStatus("💾 Saving orders done...");
 
         const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
           method: "POST",
@@ -57,13 +55,14 @@ console.log("price:", price);
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || "Failed to save order.");
 
-        setStatus("✅ Order saved! Fetching details...");
+        setStatus("Payment Done✅ Order saved💾!");
+        setTimeout(() => navigate(""), 6000);
 
         const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
         const userOrders = await fetchResponse.json();
 
         if (!Array.isArray(userOrders)) {
-          throw new Error("User orders are not in array format");
+          //throw new Error("User orders are not in array format");
         }
 
         console.log(userOrders);
@@ -186,14 +185,12 @@ Purchase Date: ${userOrder.purchaseDate}
 `;
         }
 
-        // Download .txt file
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = `${userOrder.CustomerName}_order-details.txt`;
         link.click();
 
-        // Send Email via EmailJS
         await emailjs.send(
           "service_s1fphcd",
           "template_sg0uioo",
@@ -215,19 +212,39 @@ Purchase Date: ${userOrder.purchaseDate}
         setStatus("⚠️ Payment went through, but there was an error processing your order.");
       }
 
-      setTimeout(() => navigate("/"), 6000);
+      setTimeout(() => navigate("/"), 9000);
     };
 
     saveOrder();
   }, [searchParams, navigate]);
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: "Arial, sans-serif",
+        padding: "2rem",
+        textAlign: "center",
+      }}
+    >
       <h2>Payment Status</h2>
       <p>{status}</p>
 
       {order && (
-        <div style={{ marginTop: "2rem", backgroundColor: "#f9f9f9", padding: "1rem", borderRadius: "8px" }}>
+        <div
+          style={{
+            marginTop: "2rem",
+            backgroundColor: "#f9f9f9",
+            padding: "1rem",
+            borderRadius: "8px",
+            maxWidth: "500px",
+            textAlign: "left",
+          }}
+        >
           <h3>Order Details</h3>
           <p><strong>Customer Name:</strong> {order.CustomerName}</p>
           <p><strong>Product:</strong> {order.product}</p>
