@@ -71,8 +71,8 @@ const PaymentPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
-     callback_url:  `https://technestsystems265.site/virtuals/paymentsuccess`,
-    //  callback_url: `https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}`,
+    //  callback_url:  `https://technestsystems265.site/virtuals/paymentsuccess`,
+     callback_url: `https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}`,
 
       customer: {
         email: formData.email,

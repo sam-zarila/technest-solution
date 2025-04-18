@@ -11,7 +11,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const tx_ref = searchParams.get("tx_ref");
     const statusParam = searchParams.get("status");
-    const name = searchParams.get("name");
+    const name = searchParams.get("CustomerName");
     const email = searchParams.get("email");
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
@@ -27,6 +27,12 @@ const PaymentSuccess = () => {
     }
 
     if (!name || !email || !product || isNaN(price)) {
+      console.log("Query params received:");
+console.log("name:", name);
+console.log("email:", email);
+console.log("product:", product);
+console.log("price:", price);
+
       setStatus("⚠️ Missing data from payment. Cannot proceed.");
       return;
     }
