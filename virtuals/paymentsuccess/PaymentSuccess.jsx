@@ -217,6 +217,7 @@ Purchase Date: ${userOrder.purchaseDate}
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      fontSize:18,
       alignItems: "center",
       fontFamily: "Arial, sans-serif",
       padding: "2rem",
@@ -235,7 +236,7 @@ Purchase Date: ${userOrder.purchaseDate}
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
           textAlign: "left",
         }}>
-          <h3 style={{ marginBottom: "1rem", color: "#333" }}>✅ Order Details</h3>
+          <h3 style={{ marginBottom: "1rem", color: "#000000" }}>✅ Order Details</h3>
           <p><strong>Order Number:</strong> {order.orderNumber}</p>
           <p><strong>Customer Name:</strong> {order.CustomerName}</p>
           <p><strong>Email:</strong> {order.email}</p>
