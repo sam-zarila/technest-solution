@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const ProductDetails = {
   product: "Spotify Premium",
-  price: "MWK 3,000 per month",
+  price: "MWK 3,500 per month",
 };
 
 const numericAmount = "3500"; // Fixed price
@@ -71,7 +71,9 @@ const PaymentPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  `https://technestsystems265.site/virtuals/paymentsuccess`,
+    //  callback_url:  `https://technestsystems265.site/virtuals/paymentsuccess`,
+     callback_url: `https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}`,
+
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -92,7 +94,7 @@ const PaymentPage = () => {
               product: formData.product,
               purchaseDate: formData.date,
               price: parseInt(formData.amount),
-              maxPeople: 8,
+         
               tx_ref,
             }),
           });
