@@ -73,7 +73,7 @@ const PaymentSuccess = () => {
         const password = "techn3St@2635chatPr3m";
         let downloadText = "";
 
-        switch (userOrder.product.toLowerCase()) {
+        switch (userOrder.product) {
           case "Spotify Premium":
             downloadText = `
 🎧 Spotify Premium Access
