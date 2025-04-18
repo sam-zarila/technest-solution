@@ -149,12 +149,12 @@ Date:         ${userOrder.Date}
       } catch (err) {
         console.error("🚫 Error in saveOrder:", err);
         setStatus(
-          "⚠️ Payment succeeded, but an error occurred. Check console for details."
+          "⚠️ Payment succeeded, check your network connection."
         );
       }
 
       // 6️⃣ Redirect home after showing status
-      setTimeout(() => navigate("/"), 6000);
+      setTimeout(() => navigate("/"), 45000);
     };
 
     saveOrder();
