@@ -16,9 +16,9 @@ const PaymentSuccess = () => {
     const email = searchParams.get("email");
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
-    const maxPeople = parseInt(searchParams.get("maxPeople"));
 
-    console.log({ name, email, product, price, maxPeople });
+
+    console.log({ name, email, product, price, });
 
     if (!tx_ref || statusParam !== "successful") {
       setStatus("❌ Payment failed or cancelled.");
@@ -43,7 +43,6 @@ const PaymentSuccess = () => {
             product,
             purchaseDate: new Date().toISOString().split("T")[0],
             price,
-            maxPeople: maxPeople || 1,
             tx_ref,
           }),
         });
