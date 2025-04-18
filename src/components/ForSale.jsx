@@ -143,7 +143,7 @@ const Buy = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
-  const slideInterval = 5000;
+  const slideInterval = 8000;
 
   // Updating the number of cards based on screen size
   useEffect(() => {
