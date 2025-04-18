@@ -71,7 +71,7 @@ const ChatgptpayementPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  ` https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      callback_url:  ` https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -81,48 +81,7 @@ const ChatgptpayementPage = () => {
         title: "Chatgpt Plus Payment",
         description: ProductDetails.product,
       },
-      onclose: async () => {
-        try {
-          const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              CustomerName: formData.CustomerName,
-              email: formData.email,
-              product: formData.product,
-              purchaseDate: formData.date,
-              price: parseInt(formData.amount),
-              maxPeople: 30,
-              tx_ref,
-            }),
-          });
-
-          const contentType = response.headers.get("content-type");
-          const result = contentType?.includes("application/json")
-            ? await response.json()
-            : {};
-
-          if (!response.ok) throw new Error(result.message || "Order failed to save.");
-
-          alert("✅ Payment successful! Order saved.");
-          setFormData({
-            CustomerName: "",
-            email: "",
-            amount: numericAmount,
-            product: ProductDetails.product,
-            date: new Date().toISOString().split("T")[0],
-            error: "",
-          });
-        } catch (err) {
-          console.error("🚫 Failed to save order:", err);
-          setFormData((prev) => ({
-            ...prev,
-            error: "Order saving failed. Please contact support.",
-          }));
-        } finally {
-          setLoading(false);
-        }
-      },
+    
     });
   };
 

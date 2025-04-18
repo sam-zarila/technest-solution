@@ -66,7 +66,8 @@ const NetflixPaymentPage = () => {
     const tx_ref = "TX-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
 
     window.PaychanguCheckout({
-      public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
+      //public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
+      public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
       tx_ref,
       amount: formData.amount,
       currency: "MWK",                ///virtuals/chatgpt
@@ -80,48 +81,7 @@ const NetflixPaymentPage = () => {
         title: "Netflix Premium Payment",
         description: ProductDetails.product,
       },
-      onclose: async () => {
-        try {
-          const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              CustomerName: formData.CustomerName,
-              email: formData.email,
-              product: formData.product,
-              purchaseDate: formData.date,
-              price: parseInt(formData.amount),
-              maxPeople: 8,
-              tx_ref,
-            }),
-          });
-
-          const contentType = response.headers.get("content-type");
-          const result = contentType?.includes("application/json")
-            ? await response.json()
-            : {};
-
-          if (!response.ok) throw new Error(result.message || "Order failed to save.");
-
-          alert("✅ Payment successful! Order saved.");
-          setFormData({
-            CustomerName: "",
-            email: "",
-            amount: numericAmount,
-            product: ProductDetails.product,
-            date: new Date().toISOString().split("T")[0],
-            error: "",
-          });
-        } catch (err) {
-          console.error("🚫 Failed to save order:", err);
-          setFormData((prev) => ({
-            ...prev,
-            error: "Order saving failed. Please contact support.",
-          }));
-        } finally {
-          setLoading(false);
-        }
-      },
+    
     });
   };
 
