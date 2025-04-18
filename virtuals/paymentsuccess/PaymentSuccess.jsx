@@ -235,25 +235,28 @@ Purchase Date: ${userOrder.purchaseDate}
       <p>{status}</p>
 
       {order && (
-        <div
-          style={{
-            marginTop: "2rem",
-            backgroundColor: "#f9f9f9",
-            padding: "1rem",
-            borderRadius: "8px",
-            maxWidth: "500px",
-            textAlign: "left",
-          }}
-        >
-          <h3>Order Details</h3>
-          <p><strong>Customer Name:</strong> {order.CustomerName}</p>
-          <p><strong>Product:</strong> {order.product}</p>
-          <p><strong>Order Number:</strong> {order.orderNumber}</p>
-          <p><strong>Amount Paid:</strong> MWK {order.price}</p>
-          <p><strong>Email:</strong> {order.email}</p>
-          <p><strong>Purchase Date:</strong> {order.purchaseDate}</p>
-        </div>
-      )}
+  <div
+    style={{
+      marginTop: "2rem",
+      backgroundColor: "#f9f9f9",
+      padding: "1.5rem",
+      borderRadius: "10px",
+      maxWidth: "600px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+      textAlign: "left",
+    }}
+  >
+    <h3 style={{ marginBottom: "1rem", color: "#333" }}>✅ Order Details</h3>
+    <p><strong>Order Number:</strong> {order.OrderNumber}</p>
+    <p><strong>Customer Name:</strong> {order.CustomerName}</p>
+    <p><strong>Email:</strong> {order.email}</p>
+    <p><strong>Product:</strong> {order.product}</p>
+    <p><strong>Amount Paid:</strong> MWK {order.price}</p>
+    <p><strong>Purchase Date:</strong> {new Date(order.purchaseDate).toDateString()}</p>
+    <p><strong>End Date:</strong> {new Date(order.EndDate).toDateString()}</p>
+  </div>
+)}
+
     </div>
   );
 };
