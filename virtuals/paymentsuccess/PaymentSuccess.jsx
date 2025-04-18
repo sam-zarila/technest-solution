@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import emailjs from "emailjs-com";  // Import EmailJS;
+import emailjs from "emailjs-com";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState("Verifying payment...");
-  const [order, setOrder] = useState(null); // 🆕 Added to store order details
+  const [order, setOrder] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const tx_ref = searchParams.get("tx_ref");
     const statusParam = searchParams.get("status");
-
     const name = searchParams.get("name");
     const email = searchParams.get("email");
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
 
+    // 🔍 Debug all params
+    console.log("SearchParams:", Object.fromEntries(searchParams.entries()));
 
-    console.log({ name, email, product, price, });
-
-    if (!tx_ref || statusParam !== "successful") {
+    // ✅ Accept multiple valid status responses
+    const validStatuses = ["successful", "completed", "paid"];
+    if (!tx_ref || (statusParam && !validStatuses.includes(statusParam.toLowerCase()))) {
       setStatus("❌ Payment failed or cancelled.");
       return;
     }
@@ -59,10 +60,10 @@ const PaymentSuccess = () => {
           throw new Error("User orders are not in array format");
         }
 
-        console.log(userOrders); // Log userOrders to debug the response structure
+        console.log(userOrders);
 
         const userOrder = userOrders.find(order => order.tx_ref === tx_ref) || userOrders[0];
-        setOrder(userOrder); // 🆕 Store fetched order to display
+        setOrder(userOrder);
 
         const password = "techn3St@2635chatPr3m";
         let downloadText = "";
@@ -179,12 +180,14 @@ Purchase Date: ${userOrder.purchaseDate}
 `;
         }
 
+        // Download .txt file
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = `${userOrder.CustomerName}_order-details.txt`;
         link.click();
 
+        // Send Email via EmailJS
         await emailjs.send(
           "service_s1fphcd",
           "template_sg0uioo",
@@ -203,7 +206,7 @@ Purchase Date: ${userOrder.purchaseDate}
         setTimeout(() => "", 5000);
       } catch (err) {
         console.error("🚫 Error:", err.message);
-        //setStatus("⚠️ Payment went through, but there was an error processing your order.");
+        setStatus("⚠️ Payment went through, but there was an error processing your order.");
       }
 
       setTimeout(() => navigate("/"), 6000);
@@ -212,7 +215,6 @@ Purchase Date: ${userOrder.purchaseDate}
     saveOrder();
   }, [searchParams, navigate]);
 
-  // 🆕 UI to show order details
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
       <h2>Payment Status</h2>
