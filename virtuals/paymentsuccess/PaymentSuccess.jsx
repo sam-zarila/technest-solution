@@ -16,8 +16,6 @@ const PaymentSuccess = () => {
     const product = searchParams.get("product");
     const price = parseInt(searchParams.get("price"));
 
-    console.log("SearchParams:", Object.fromEntries(searchParams.entries()));
-
     const validStatuses = ["successful", "completed", "paid"];
     if (!tx_ref || (statusParam && !validStatuses.includes(statusParam.toLowerCase()))) {
       setStatus("❌ Payment failed or cancelled.");
@@ -25,19 +23,13 @@ const PaymentSuccess = () => {
     }
 
     if (!name || !email || !product || isNaN(price)) {
-      console.log("Query params received:");
-      console.log("name:", name);
-      console.log("email:", email);
-      console.log("product:", product);
-      console.log("price:", price);
-
       setStatus("⚠️ Missing data from payment. Cannot proceed.");
       return;
     }
 
     const saveOrder = async () => {
       try {
-        setStatus("💾 Saving orders done...");
+        setStatus("💾 Saving orders...");
 
         const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
           method: "POST",
@@ -55,24 +47,20 @@ const PaymentSuccess = () => {
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || "Failed to save order.");
 
-        setStatus("Payment Done✅ Order saved💾!");
-      //  setTimeout(() => navigate(""), 6000);
+        setStatus("✅ Payment Done! Order saved.");
 
         const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
         const userOrders = await fetchResponse.json();
 
+        let userOrder;
         if (Array.isArray(userOrders)) {
           userOrder = userOrders.find(order => order.tx_ref === tx_ref) || userOrders[0];
-        } else if (userOrders && typeof userOrders === 'object') {
+        } else if (userOrders && typeof userOrders === "object") {
           userOrder = userOrders;
         } else {
-          throw new Error("User orders are in an unexpected format");
+          throw new Error("Unexpected format for user orders.");
         }
-        
 
-        console.log(userOrders);
-
-        const userOrder = userOrders.find(order => order.tx_ref === tx_ref) || userOrders[0];
         setOrder(userOrder);
 
         const password = "techn3St@2635chatPr3m";
@@ -116,12 +104,12 @@ Email Used: ${userOrder.email}
 Purchase Date: ${userOrder.purchaseDate}
 
 ✅ How to Join:
-1. Click this link: [Provide link]
-2. Log in with your Apple Music account (or create one).
-3. Enter this address if prompted: Chancellor College, Zomba, Malawi
-4. Accept the invitation.
+1. [Provide Apple Music link]
+2. Log in or sign up.
+3. Use the provided family invite.
+4. Set your address to Chancellor College, Zomba, Malawi.
 
-Enjoy your music! TechNest 🎶
+Enjoy the beats! TechNest 🍏🎶
 `;
             break;
 
@@ -186,16 +174,18 @@ Amount Paid: MWK ${userOrder.price}
 Email Used: ${userOrder.email}
 Purchase Date: ${userOrder.purchaseDate}
 
-✅ Please check your product-specific instructions or contact support.
+✅ Please contact support for usage instructions.
 `;
         }
 
+        // Create downloadable file
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = `${userOrder.CustomerName}_order-details.txt`;
         link.click();
 
+        // Send confirmation email
         await emailjs.send(
           "service_s1fphcd",
           "template_sg0uioo",
@@ -211,57 +201,52 @@ Purchase Date: ${userOrder.purchaseDate}
         );
 
         setStatus("✅ Payment successful! Order saved, email sent & download ready.");
-        setTimeout(() => "", 5000);
+        setTimeout(() => navigate("/"), 9000);
       } catch (err) {
         console.error("🚫 Error:", err.message);
-       // setStatus("⚠️ Payment went through, but there was an error processing your order.");
+        setStatus("⚠️ Payment was successful, but an error occurred while processing your order.");
       }
-
-      setTimeout(() => navigate("/"), 9000);
     };
 
     saveOrder();
   }, [searchParams, navigate]);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "Arial, sans-serif",
-        padding: "2rem",
-        textAlign: "center",
-      }}
-    >
+    <div style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      fontFamily: "Arial, sans-serif",
+      padding: "2rem",
+      textAlign: "center",
+    }}>
       <h1>Payment Status</h1>
       <p>{status}</p>
 
       {order && (
-  <div
-    style={{
-      marginTop: "2rem",
-      backgroundColor: "#f9f9f9",
-      padding: "1.5rem",
-      borderRadius: "10px",
-      maxWidth: "600px",
-      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-      textAlign: "left",
-    }}
-  >
-    <h3 style={{ marginBottom: "1rem", color: "#333" }}>✅ Order Details</h3>
-    <p><strong>Order Number:</strong> {order.OrderNumber}</p>
-    <p><strong>Customer Name:</strong> {order.CustomerName}</p>
-    <p><strong>Email:</strong> {order.email}</p>
-    <p><strong>Product:</strong> {order.product}</p>
-    <p><strong>Amount Paid:</strong> MWK {order.price}</p>
-    <p><strong>Purchase Date:</strong> {new Date(order.purchaseDate).toDateString()}</p>
-    <p><strong>End Date:</strong> {new Date(order.EndDate).toDateString()}</p>
-  </div>
-)}
-
+        <div style={{
+          marginTop: "2rem",
+          backgroundColor: "#f9f9f9",
+          padding: "1.5rem",
+          borderRadius: "10px",
+          maxWidth: "600px",
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+          textAlign: "left",
+        }}>
+          <h3 style={{ marginBottom: "1rem", color: "#333" }}>✅ Order Details</h3>
+          <p><strong>Order Number:</strong> {order.orderNumber}</p>
+          <p><strong>Customer Name:</strong> {order.CustomerName}</p>
+          <p><strong>Email:</strong> {order.email}</p>
+          <p><strong>Product:</strong> {order.product}</p>
+          <p><strong>Amount Paid:</strong> MWK {order.price}</p>
+          <p><strong>Purchase Date:</strong> {new Date(order.purchaseDate).toDateString()}</p>
+          {order.EndDate && (
+            <p><strong>End Date:</strong> {new Date(order.EndDate).toDateString()}</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
