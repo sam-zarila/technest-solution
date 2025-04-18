@@ -61,9 +61,14 @@ const PaymentSuccess = () => {
         const fetchResponse = await fetch(`https://technestbackend-1.onrender.com/orders/email/${email}`);
         const userOrders = await fetchResponse.json();
 
-        if (!Array.isArray(userOrders)) {
-          //throw new Error("User orders are not in array format");
+        if (Array.isArray(userOrders)) {
+          userOrder = userOrders.find(order => order.tx_ref === tx_ref) || userOrders[0];
+        } else if (userOrders && typeof userOrders === 'object') {
+          userOrder = userOrders;
+        } else {
+          throw new Error("User orders are in an unexpected format");
         }
+        
 
         console.log(userOrders);
 
@@ -73,8 +78,8 @@ const PaymentSuccess = () => {
         const password = "techn3St@2635chatPr3m";
         let downloadText = "";
 
-        switch (userOrder.product) {
-          case "Spotify Premium":
+        switch (userOrder.product.toLowerCase()) {
+          case "spotify premium":
             downloadText = `
 🎧 Spotify Premium Access
 
