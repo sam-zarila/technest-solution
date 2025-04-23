@@ -25,6 +25,8 @@ import ChatgptPaymentPage from "../virtuals/chatgpt/chatgptpayents";
 import ApplemusicPaymentPage from "../virtuals/applemusic/applemusicpayment";
 import NetflixPaymentPage from "../virtuals/netflix/netflixpayment";
 import PaymentSuccess from "../virtuals/paymentsuccess/PaymentSuccess";
+import AdderalpayementPage from "../virtuals/adderall/adderallpayments";
+import AdderalPaymentSuccess from "../virtuals/adderalpaymentsucess/adderalpaymentsucess";
 
 const App = () => {
   return (
@@ -80,6 +82,8 @@ const App = () => {
           <Route path="/virtuals/applemusic" element={<ApplemusicPaymentPage />} />
           <Route path="/virtuals/netflix" element={<NetflixPaymentPage />} />
           <Route path="/virtuals/paymentsuccess" element={<PaymentSuccess />} />
+          <Route path="/virtuals/adderall" element={<AdderalpayementPage />} />
+          <Route path="/virtuals/paymentsuccess" element={<AdderalPaymentSuccess />} />
         </Routes>
       </div>
     </BrowserRouter>

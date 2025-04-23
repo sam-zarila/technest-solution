@@ -46,6 +46,16 @@ const Forsale = ({ slide, index }) => {
 const Buy = () => {
   const slides = [
     {
+      title: "Adderall",
+      description:
+        "Stay focus🧘🏻 and stay active ,study 📖 overnight and  save the semester,No side effects, addy instock.",
+      image:
+        "https://www.sobanewjersey.com/wp-content/uploads/2023/09/adderall-pills-laid-out-on-a-table.webp",
+      price: "Mwk 3,000 /tablet",
+      buttonText: "Buy Now",
+      path: "/virtuals/adderall",   
+    },
+    {
       title: "ChatGPT Plus",
       description:
         "Unlock the full potential of ChatGPT with advanced models and unlimited reasoning power.",
