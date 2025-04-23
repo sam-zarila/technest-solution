@@ -76,7 +76,7 @@ const AdderalPaymentSuccess = () => {
     const content = `
 Order Confirmation for ${order.CustomerName}
 ------------------------------------------------
-Order Number: ${order.orderNumber}
+Order Number: ${order.tx_ref}
 Customer Name: ${order.CustomerName}
 Email: ${order.email}
 Phone Number: ${order.phonenumber}
