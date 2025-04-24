@@ -93,7 +93,17 @@
 // export default App;
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, StarsCanvas, Works } from "./components";
+import {
+  About,
+  Contact,
+  Experience,
+  Feedbacks,
+  Hero,
+  Navbar,
+  Tech,
+  StarsCanvas,
+  Works
+} from "./components";
 import Train from "./components/Train";
 import FrontEndCourse from "./courses/frontend/frontEndCourse";
 import ShopCourse from "./shop/ShopCourse";
@@ -121,73 +131,62 @@ import PaymentSuccess from "./virtuals/paymentsuccess/PaymentSuccess";
 import AdderalpayementPage from "./virtuals/adderall/adderallpayments";
 import AdderalPaymentSuccess from "./virtuals/adderalpaymentsucess/adderalpaymentsucess";
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div className="relative z-0 bg-primary">
-        {/* Navbar is shown on all pages */}
-        <Navbar />
+const App = () => (
+  <BrowserRouter>
+    <div className="relative z-0 bg-primary">
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+                <Hero />
+              </div>
+              <ForSale />
+              <About />
+              <Experience />
+              <PackagesPage />
+              <Works />
+              <VideoSection />
+              <Train />
+              <Feedbacks />
+              <TeamPage />
+              <div className="relative z-0">
+                <Contact />
+                <StarsCanvas />
+              </div>
+            </>
+          }
+        />
+        <Route path="/registration" element={<StudentCourseRegistrationForm />} />
+        <Route path="/courses/frontend" element={<FrontEndCourse />} />
+        <Route path="/courses/Backend" element={<BackendCourse />} />
+        <Route path="/courses/fullstack" element={<FullstackCourse />} />
+        <Route path="/courses/flutter" element={<FlutterCourse />} />
+        <Route path="/courses/java" element={<JavaCourse />} />
+        <Route path="/courses/training" element={<TrainingCourse />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/shop" element={<ShopCourse />} />
+        <Route path="/shop/backend" element={<BackendShoppingPage />} />
+        <Route path="/shop/fullstack" element={<FullstackShoppingPage />} />
+        <Route path="/shop/flutter" element={<FlutterShoppingPage />} />
 
-        <Routes>
-          {/* Home Route */}
-          <Route
-            path="/"
-            element={
-              <>
-                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-                  <Hero />
-                </div>
-                <ForSale />
-                <About />
-                <Experience />
-                <PackagesPage />
-                <Works />
-                <VideoSection />
-                <Train />
-                <Feedbacks />
-                <TeamPage />
-                <div className="relative z-0">
-                  <Contact />
-                  <StarsCanvas />
-                </div>
-              </>
-            }
-          />
+        {/* Payment form routes */}
+        <Route path="/virtuals/spotify" element={<PaymentPage />} />
+        <Route path="/virtuals/chatgpt" element={<ChatgptPaymentPage />} />
+        <Route path="/virtuals/applemusic" element={<ApplemusicPaymentPage />} />
+        <Route path="/virtuals/netflix" element={<NetflixPaymentPage />} />
+        <Route path="/virtuals/adderall" element={<AdderalpayementPage />} />
 
-          {/* Registration Route */}
-          <Route path="/registration" element={<StudentCourseRegistrationForm />} />
+        {/* Success routes */}
+        <Route path="/virtuals/paymentsuccess" element={<PaymentSuccess />} />
+        <Route path="/virtuals/adderalpaymentsucess" element={<AdderalPaymentSuccess />} />
 
-          {/* Course Routes */}
-          <Route path="/courses/frontend" element={<FrontEndCourse />} />
-          <Route path="/courses/Backend" element={<BackendCourse />} />
-          <Route path="/courses/fullstack" element={<FullstackCourse />} />
-          <Route path="/courses/flutter" element={<FlutterCourse />} />
-          <Route path="/courses/java" element={<JavaCourse />} />
-          <Route path="/courses/training" element={<TrainingCourse />} />
-
-          {/* Shop Routes */}
-          <Route path="/shop" element={<ShopCourse />} />
-          <Route path="/shop/backend" element={<BackendShoppingPage />} />
-          <Route path="/shop/fullstack" element={<FullstackShoppingPage />} />
-          <Route path="/shop/flutter" element={<FlutterShoppingPage />} />
-
-          {/* Payment Form Routes */}
-          <Route path="/virtuals/spotify" element={<PaymentPage />} />
-          <Route path="/virtuals/chatgpt" element={<ChatgptPaymentPage />} />
-          <Route path="/virtuals/applemusic" element={<ApplemusicPaymentPage />} />
-          <Route path="/virtuals/netflix" element={<NetflixPaymentPage />} />
-          <Route path="/virtuals/adderall" element={<AdderalpayementPage />} />
-
-          {/* Success Pages */}
-          <Route path="/virtuals/paymentsuccess" element={<PaymentSuccess />} />
-          <Route path="/virtuals/adderalpaymentsucess" element={<AdderalPaymentSuccess />} />
-
-          {/* Fallback Route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-};
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
+  </BrowserRouter>
+);
 
 export default App;
