@@ -39,7 +39,7 @@ const AdderalPaymentSuccess = () => {
       purchaseDate,
       phoneNumber,
       location,
-      DeliveryOption,
+      deliveryOption,
       quantity,
     };
 
