@@ -53,8 +53,8 @@ const AdderalPaymentSuccess = () => {
     // Send EmailJS notification
     emailjs
       .send(
-        "your_service_id",
-        "your_template_id",
+        "service_gw5ypqa",
+        "template_6m5fwf6",
         {
           customer_name: name,
           customer_phone: phoneNumber,
@@ -65,7 +65,7 @@ const AdderalPaymentSuccess = () => {
           amount: price,
           date: new Date(purchaseDate).toLocaleString(),
         },
-        "your_user_id"
+        "HlMFIQVluZ-Bfo1qv"
       )
       .then(
         () => console.log("📧 Payment notification sent successfully"),
