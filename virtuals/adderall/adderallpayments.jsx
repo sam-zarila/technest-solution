@@ -10,11 +10,11 @@ const AdderalpayementPage = () => {
   const [formData, setFormData] = useState({
     CustomerName: "",
     phonenumber: "",
-    Location: "",
+    location: "",
     quantity: 1,
     amount: ProductDetails.price,
     Description: "",
-    DeliveryOption: "",
+    deliveryOption: "",
     date: new Date().toISOString().split("T")[0],
     error: "",
   });
@@ -76,7 +76,7 @@ const AdderalpayementPage = () => {
       ...prev,
       DeliveryOption: value,
       amount: baseAmount + deliveryFee,
-      Location: value === "Delivery" ? prev.Location : "", // Keep if delivery, clear if self-pickup
+      location: value === "Delivery" ? prev.location : "", // Keep if delivery, clear if self-pickup
     }));
   };
 
@@ -98,7 +98,7 @@ const AdderalpayementPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",
-      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
+      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&location=${encodeURIComponent(formData.location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&deliveryoption=${encodeURIComponent(formData.deliveryOption)}&OrderNumber=${encodeURIComponent(tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],

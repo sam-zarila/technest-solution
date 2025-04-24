@@ -15,8 +15,8 @@ const AdderalPaymentSuccess = () => {
     const Description = searchParams.get("Description");
     const price = parseInt(searchParams.get("price") || "0", 10);
     const phoneNumber = searchParams.get("phoneNumber");
-    const location = searchParams.get("Location");
-    const deliveryOption = searchParams.get("Deliveryoption");
+    const location = searchParams.get("location");
+    const deliveryOption = searchParams.get("deliveryOption");
     const quantity = parseInt(searchParams.get("Quantity") || "0", 10);
 
     const validStatuses = ["successful", "completed", "paid"];
@@ -55,9 +55,10 @@ const AdderalPaymentSuccess = () => {
           name: name,
           phoneNumber: phoneNumber,
           tx_ref,
-          Location: location,
-          Deliveryoption: deliveryOption,
+          location: location,
+          deliveryOption: deliveryOption,
           Description:Description,
+        
           quantity,
           amount: price,
           date: new Date(purchaseDate).toLocaleString(),
