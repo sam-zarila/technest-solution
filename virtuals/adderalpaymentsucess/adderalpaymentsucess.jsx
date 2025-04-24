@@ -53,7 +53,7 @@ const AdderalPaymentSuccess = () => {
         "template_6m5fwf6",
         {
           name: name,
-          customer_phone: phoneNumber,
+          phoneNumber: phoneNumber,
           orderNumber: tx_ref,
           delivery_location: location,
           Deliveryoption: deliveryOption,
