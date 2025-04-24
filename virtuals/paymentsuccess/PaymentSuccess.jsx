@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -236,7 +236,7 @@ Purchase Date: ${userOrder.purchaseDate}
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
           textAlign: "left",
         }}>
-          <h3 style={{ marginBottom: "1rem", color: "#000000" }}>✅ Order Details</h3>
+          <h3 style={{ marginBottom: "1rem", color: "white" }}>✅ Order Details</h3>
           <p><strong>Order Number:</strong> {order.orderNumber}</p>
           <p><strong>Customer Name:</strong> {order.CustomerName}</p>
           <p><strong>Email:</strong> {order.email}</p>

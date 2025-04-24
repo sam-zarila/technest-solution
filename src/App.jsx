@@ -25,6 +25,7 @@ import ChatgptPaymentPage from "../virtuals/chatgpt/chatgptpayents";
 import ApplemusicPaymentPage from "../virtuals/applemusic/applemusicpayment";
 import NetflixPaymentPage from "../virtuals/netflix/netflixpayment";
 import PaymentSuccess from "../virtuals/paymentsuccess/PaymentSuccess";
+import MarketplaceSection from "./marketplace/marketplace";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
                 <About />
                 <Experience />
                 <ForSale/>
+                <MarketplaceSection/>
                 <PackagesPage />
                 <Works />
                 <VideoSection />
