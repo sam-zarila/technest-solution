@@ -137,7 +137,7 @@ Enjoy! TechNest 🍿
 `;
             break;
 
-          case "chatgpt plus":
+          case "chatgpt plus": 
             downloadText = `
 🤖 ChatGPT Plus Access
 

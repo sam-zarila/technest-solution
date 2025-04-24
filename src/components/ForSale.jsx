@@ -46,6 +46,16 @@ const Forsale = ({ slide, index }) => {
 const Buy = () => {
   const slides = [
     {
+      title: "Adderall",
+      description:
+        "Stay focus🧘🏻 and stay active ,study 📖 overnight and  save the semester,No side effects, addy instock.",
+      image:
+        "https://www.sobanewjersey.com/wp-content/uploads/2023/09/adderall-pills-laid-out-on-a-table.webp",
+      price: "Mwk 3,000 /tablet",
+      buttonText: "Buy Now",
+      path: "/virtuals/adderall",   
+    },
+    {
       title: "ChatGPT Plus",
       description:
         "Unlock the full potential of ChatGPT with advanced models and unlimited reasoning power.",
@@ -143,7 +153,7 @@ const Buy = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
-  const slideInterval = 5000;
+  const slideInterval = 8000;
 
   // Updating the number of cards based on screen size
   useEffect(() => {
@@ -181,7 +191,7 @@ const Buy = () => {
     <section className="py-10">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>on resale virtual products</p>
-        <h2 className={`${styles.sectionHeadText}`}>Available now</h2>
+        <p className={`${styles.sectionHeadText}`}>Spotify,Addy,Chatgpt only Available now</p>
       </motion.div>
 
       <div className="mt-10 relative">

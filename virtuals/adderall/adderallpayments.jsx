@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const ProductDetails = {
-  product: "Netflix Premium",
-  price: "MWK 5,000 per month",
+  product: "Adderall",
+  price: 3000, // Use number instead of "MWK 3,000 per tablet"
 };
 
-const numericAmount = "5000"; // Fixed price
-
-const NetflixPaymentPage = () => {
+const AdderalpayementPage = () => {
   const [formData, setFormData] = useState({
     CustomerName: "",
     email: "",
-    amount: numericAmount,
+    phonenumber: "",
+    Location: "",
+    quantity: 1,
+    amount: ProductDetails.price, // initialize with 1 * price
     product: ProductDetails.product,
+    DeliveryOption:"",
     date: new Date().toISOString().split("T")[0],
     error: "",
   });
@@ -44,13 +46,24 @@ const NetflixPaymentPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "amount") return; // Don't allow amount to change
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-      error: "",
-    }));
+    if (name === "quantity") {
+      const qty = parseInt(value, 10) || 1;
+      const updatedAmount = qty * ProductDetails.price;
+
+      setFormData((prev) => ({
+        ...prev,
+        quantity: qty,
+        amount: updatedAmount,
+        error: "",
+      }));
+    } else if (name !== "amount") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+        error: "",
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -66,29 +79,27 @@ const NetflixPaymentPage = () => {
     const tx_ref = "TX-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
 
     window.PaychanguCheckout({
-      //public_key: "pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt",
       public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
       tx_ref,
       amount: formData.amount,
-      currency: "MWK",                ///virtuals/chatgpt
-      callback_url:  ` https://technestsystems265.site/virtuals/paymentsuccess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&product=${encodeURIComponent(formData.product)}&price=${formData.amount}`,
+      currency: "MWK",
+      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(formData.tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
         last_name: formData.CustomerName.split(" ").slice(1).join(" "),
       },
       customization: {
-        title: "Netflix Premium Payment",
+        title: "Adderal Payment",
         description: ProductDetails.product,
       },
-    
     });
   };
 
   return (
     <div className="p-6">
       <div className="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-        <h1 className="text-center text-2xl text-white font-bold mb-8">Buy Netflix Premium</h1>
+        <h1 className="text-center text-2xl text-white font-bold mb-8">Buy Adderall</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -105,6 +116,32 @@ const NetflixPaymentPage = () => {
           </div>
 
           <div>
+            <label className="block text-white">Phone Number</label>
+            <input
+              type="text"
+              name="phonenumber"
+              placeholder="Enter Your PhoneNumber"
+              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+              value={formData.phonenumber}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-white">Location</label>
+            <input
+              type="text"
+              name="Location"
+              placeholder="Mbelwa 15,chilembwe 12,chikanda,Incah,Flats etc"
+              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+              value={formData.Location}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
             <label className="block text-white">Email Address</label>
             <input
               type="email"
@@ -112,6 +149,19 @@ const NetflixPaymentPage = () => {
               placeholder="Enter your email address"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-white">Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              min="1"
+              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+              value={formData.quantity}
               onChange={handleChange}
               required
             />
@@ -138,6 +188,40 @@ const NetflixPaymentPage = () => {
               value={formData.product}
             />
           </div>
+          <div>
+  <label className="block text-white">Delivery Option</label>
+  <select
+    name="DeliveryOption"
+    className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+    value={formData.DeliveryOption}
+    onChange={(e) => {
+      const value = e.target.value;
+      const qty = formData.quantity || 1;
+      const baseAmount = qty * ProductDetails.price;
+      const deliveryFee = value === "Delivery" ? 300 : 0;
+
+      setFormData((prev) => ({
+        ...prev,
+        DeliveryOption: value,
+        amount: baseAmount + deliveryFee,
+        Location: value === "Delivery" ? prev.Location : "", // Keep if delivery, clear if self-pickup
+      }));
+    }}
+    required
+  >
+    <option value="">Select Delivery Option</option>
+    <option value="Self Pickup">Self Pickup in Mbelwa 15</option>
+    <option value="Delivery">Delivery to my place</option>
+  </select>
+</div>
+
+{/* Show delivery warning */}
+{formData.DeliveryOption === "Delivery" && (
+  <p className="text-red-500 mt-2">
+    Delivery will attract a fee of K300. Your delivery address will be used as provided above.
+  </p>
+)}       
+
 
           {formData.error && <p className="text-red-500 mt-1">{formData.error}</p>}
 
@@ -165,4 +249,4 @@ const NetflixPaymentPage = () => {
   );
 };
 
-export default NetflixPaymentPage;
+export default AdderalpayementPage;
