@@ -9,12 +9,11 @@ const ProductDetails = {
 const AdderalpayementPage = () => {
   const [formData, setFormData] = useState({
     CustomerName: "",
-    email: "",
     phonenumber: "",
     Location: "",
     quantity: 1,
     amount: ProductDetails.price, // initialize with 1 * price
-    product: ProductDetails.product,
+    Description:"",
     DeliveryOption:"",
     date: new Date().toISOString().split("T")[0],
     error: "",
@@ -83,7 +82,7 @@ const AdderalpayementPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",
-      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?email=${formData.email}&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&product=${encodeURIComponent(formData.product)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(formData.tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
+      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(formData.tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -141,18 +140,7 @@ const AdderalpayementPage = () => {
             />
           </div>
 
-          <div>
-            <label className="block text-white">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+  
 
           <div>
             <label className="block text-white">Quantity</label>
@@ -164,6 +152,19 @@ const AdderalpayementPage = () => {
               value={formData.quantity}
               onChange={handleChange}
               required
+            />
+          </div>
+          <div>
+            <label className="block text-white">Description</label>
+            <input
+              type="text"
+              name=" Description"
+              placeholder="i will collect around 9am tooday, come at 6pm"
+              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+              value={formData.Description}
+              onChange={handleChange}
+            option
+            
             />
           </div>
 
@@ -178,16 +179,6 @@ const AdderalpayementPage = () => {
             />
           </div>
 
-          <div>
-            <label className="block text-white">Product</label>
-            <input
-              type="text"
-              name="product"
-              readOnly
-              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
-              value={formData.product}
-            />
-          </div>
           <div>
   <label className="block text-white">Delivery Option</label>
   <select

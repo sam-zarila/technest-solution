@@ -12,8 +12,7 @@ const AdderalPaymentSuccess = () => {
     const tx_ref = searchParams.get("tx_ref");
     const statusParam = searchParams.get("status");
     const name = searchParams.get("name");
-    const email = searchParams.get("email");
-    const product = searchParams.get("product");
+    const Description = searchParams.get("Description");
     const price = parseInt(searchParams.get("price") || "0", 10);
     const phoneNumber = searchParams.get("phoneNumber");
     const location = searchParams.get("Location");
@@ -39,8 +38,7 @@ const AdderalPaymentSuccess = () => {
     const orderData = {
       orderNumber: tx_ref,
       customerName: name,
-      email,
-      product,
+      Description,
       price,
       purchaseDate,
       phoneNumber,
@@ -59,10 +57,8 @@ const AdderalPaymentSuccess = () => {
         "your_template_id",
         {
           customer_name: name,
-          customer_email: email,
           customer_phone: phoneNumber,
           order_id: tx_ref,
-          product_name: product,
           delivery_location: location,
           delivery_option: deliveryOption,
           quantity,
@@ -83,9 +79,7 @@ const AdderalPaymentSuccess = () => {
     const {
       orderNumber,
       customerName,
-      email,
       phoneNumber,
-      product,
       quantity,
       price,
       deliveryOption,
@@ -94,13 +88,11 @@ const AdderalPaymentSuccess = () => {
     } = order;
 
     const content = `
-Order Confirmation for ${customerName}
+Adderall Order Confirmation for ${customerName}
 ------------------------------------------------
 Order Number: ${orderNumber}
 Customer Name: ${customerName}
-Email: ${email}
 Phone Number: ${phoneNumber}
-Product: ${product}
 Quantity: ${quantity}
 Amount Paid: MWK ${price}
 Delivery Option: ${deliveryOption}
@@ -116,7 +108,7 @@ Purchase Date: ${new Date(purchaseDate).toLocaleString()}
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `Order-${orderNumber}.txt`);
+    link.setAttribute("download", `Order-${customerName}.txt`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -155,13 +147,12 @@ Purchase Date: ${new Date(purchaseDate).toLocaleString()}
           }}
         >
           <h3 style={{ marginBottom: "1rem", color: "#10b981" }}>
-            ✅ Order Details
+            ✅Addy Order Details
           </h3>
           <p><strong>Order Number:</strong> {order.orderNumber}</p>
           <p><strong>Customer Name:</strong> {order.customerName}</p>
-          <p><strong>Email:</strong> {order.email}</p>
           <p><strong>Phone:</strong> {order.phoneNumber}</p>
-          <p><strong>Product:</strong> {order.product}</p>
+          <p><strong>Description:</strong> {order.Description}</p>
           <p><strong>Quantity:</strong> {order.quantity}</p>
           <p><strong>Amount Paid:</strong> MWK {order.price}</p>
           <p><strong>Delivery Option:</strong> {order.deliveryOption}</p>
