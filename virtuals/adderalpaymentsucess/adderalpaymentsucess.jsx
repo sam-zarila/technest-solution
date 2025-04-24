@@ -14,9 +14,9 @@ const AdderalPaymentSuccess = () => {
     const name = searchParams.get("name");
     const Description = searchParams.get("Description");
     const price = parseInt(searchParams.get("price") || "0", 10);
-    const phonenumber = searchParams.get("phonenumber");
-    const Location = searchParams.get("Location");
-    const DeliveryOption = searchParams.get("Deliveryoption");
+    const phoneNumber = searchParams.get("phoneNumber");
+    const location = searchParams.get("Location");
+    const deliveryOption = searchParams.get("Deliveryoption");
     const quantity = parseInt(searchParams.get("Quantity") || "0", 10);
 
     const validStatuses = ["successful", "completed", "paid"];
@@ -37,9 +37,9 @@ const AdderalPaymentSuccess = () => {
       Description,
       price,
       purchaseDate,
-      phonenumber,
-      Location,
-      DeliveryOption,
+      phoneNumber,
+      location,
+      deliveryOption,
       quantity,
     };
 
@@ -52,13 +52,11 @@ const AdderalPaymentSuccess = () => {
         "service_gw5ypqa",
         "template_6m5fwf6",
         {
-          name: CustomerName,
-          customer_phone: phonenumber,
-          orderNumber: tx_ref,
-          delivery_location: Location,
-          Delivery_option: DeliveryOption,
-          Description: Description,
-          Location:Location,
+          name: name,
+          customer_phone: phoneNumber,
+          order_id: tx_ref,
+          delivery_location: location,
+          delivery_option: deliveryOption,
           quantity,
           amount: price,
           date: new Date(purchaseDate).toLocaleString(),
