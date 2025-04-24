@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const ProductDetails = {
   product: "Adderall",
-  price: 3000, // Use number instead of "MWK 3,000 per tablet"
+  price: 3000,
 };
 
 const AdderalpayementPage = () => {
@@ -12,9 +12,9 @@ const AdderalpayementPage = () => {
     phonenumber: "",
     Location: "",
     quantity: 1,
-    amount: ProductDetails.price, // initialize with 1 * price
-    Description:"",
-    DeliveryOption:"",
+    amount: ProductDetails.price,
+    Description: "",
+    DeliveryOption: "",
     date: new Date().toISOString().split("T")[0],
     error: "",
   });
@@ -48,12 +48,13 @@ const AdderalpayementPage = () => {
 
     if (name === "quantity") {
       const qty = parseInt(value, 10) || 1;
-      const updatedAmount = qty * ProductDetails.price;
+      const baseAmount = qty * ProductDetails.price;
+      const deliveryFee = formData.DeliveryOption === "Delivery" ? 300 : 0;
 
       setFormData((prev) => ({
         ...prev,
         quantity: qty,
-        amount: updatedAmount,
+        amount: baseAmount + deliveryFee,
         error: "",
       }));
     } else if (name !== "amount") {
@@ -63,6 +64,20 @@ const AdderalpayementPage = () => {
         error: "",
       }));
     }
+  };
+
+  const handleDeliveryChange = (e) => {
+    const value = e.target.value;
+    const qty = formData.quantity || 1;
+    const baseAmount = qty * ProductDetails.price;
+    const deliveryFee = value === "Delivery" ? 300 : 0;
+
+    setFormData((prev) => ({
+      ...prev,
+      DeliveryOption: value,
+      amount: baseAmount + deliveryFee,
+      Location: value === "Delivery" ? prev.Location : "", // Keep if delivery, clear if self-pickup
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -82,7 +97,7 @@ const AdderalpayementPage = () => {
       tx_ref,
       amount: formData.amount,
       currency: "MWK",
-      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(formData.tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
+      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&Location=${encodeURIComponent(formData.Location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&Deliveryoption=${encodeURIComponent(formData.DeliveryOption)}&OrderNumber=${encodeURIComponent(tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -132,15 +147,13 @@ const AdderalpayementPage = () => {
             <input
               type="text"
               name="Location"
-              placeholder="Mbelwa 15,chilembwe 12,chikanda,Incah,Flats etc"
+              placeholder="Mbelwa 15, chilembwe 12, chikanda, Incah, Flats etc"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.Location}
               onChange={handleChange}
               required
             />
           </div>
-
-  
 
           <div>
             <label className="block text-white">Quantity</label>
@@ -154,17 +167,16 @@ const AdderalpayementPage = () => {
               required
             />
           </div>
+
           <div>
             <label className="block text-white">Description</label>
             <input
               type="text"
-              name=" Description"
-              placeholder="i will collect around 9am tooday, come at 6pm"
+              name="Description"
+              placeholder="I will collect around 9am today, come at 6pm"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.Description}
               onChange={handleChange}
-            option
-            
             />
           </div>
 
@@ -180,39 +192,25 @@ const AdderalpayementPage = () => {
           </div>
 
           <div>
-  <label className="block text-white">Delivery Option</label>
-  <select
-    name="DeliveryOption"
-    className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
-    value={formData.DeliveryOption}
-    onChange={(e) => {
-      const value = e.target.value;
-      const qty = formData.quantity || 1;
-      const baseAmount = qty * ProductDetails.price;
-      const deliveryFee = value === "Delivery" ? 300 : 0;
+            <label className="block text-white">Delivery Option</label>
+            <select
+              name="DeliveryOption"
+              className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
+              value={formData.DeliveryOption}
+              onChange={handleDeliveryChange}
+              required
+            >
+              <option value="">Select Delivery Option</option>
+              <option value="Self Pickup">Self Pickup in Mbelwa 15</option>
+              <option value="Delivery">Delivery to my place</option>
+            </select>
+          </div>
 
-      setFormData((prev) => ({
-        ...prev,
-        DeliveryOption: value,
-        amount: baseAmount + deliveryFee,
-        Location: value === "Delivery" ? prev.Location : "", // Keep if delivery, clear if self-pickup
-      }));
-    }}
-    required
-  >
-    <option value="">Select Delivery Option</option>
-    <option value="Self Pickup">Self Pickup in Mbelwa 15</option>
-    <option value="Delivery">Delivery to my place</option>
-  </select>
-</div>
-
-{/* Show delivery warning */}
-{formData.DeliveryOption === "Delivery" && (
-  <p className="text-red-500 mt-2">
-    Delivery will attract a fee of K300. Your delivery address will be used as provided above.
-  </p>
-)}       
-
+          {formData.DeliveryOption === "Delivery" && (
+            <p className="text-red-500 mt-2">
+              Delivery will attract a fee of K300. Your delivery address will be used as provided above.
+            </p>
+          )}
 
           {formData.error && <p className="text-red-500 mt-1">{formData.error}</p>}
 

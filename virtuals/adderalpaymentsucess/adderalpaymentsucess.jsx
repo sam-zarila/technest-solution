@@ -19,18 +19,14 @@ const AdderalPaymentSuccess = () => {
     const deliveryOption = searchParams.get("Deliveryoption");
     const quantity = parseInt(searchParams.get("Quantity") || "0", 10);
 
-    // Treat as success if tx_ref exists, or if statusParam indicates success
     const validStatuses = ["successful", "completed", "paid"];
-    const isStatusValid =
-      statusParam
-        ? validStatuses.includes(statusParam.toLowerCase())
-        : true; // assume success if no status provided
+    const isStatusValid = statusParam
+      ? validStatuses.includes(statusParam.toLowerCase())
+      : true;
 
     if (!tx_ref || !isStatusValid) {
       setStatus("❌ Payment failed or cancelled.");
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      setTimeout(() => navigate("/"), 2000);
       return;
     }
 
@@ -50,7 +46,7 @@ const AdderalPaymentSuccess = () => {
     setOrder(orderData);
     setStatus("✅ Payment successful! Confirmation below:");
 
-    // Send EmailJS notification
+    // Send email
     emailjs
       .send(
         "service_gw5ypqa",
@@ -67,31 +63,16 @@ const AdderalPaymentSuccess = () => {
         },
         "HlMFIQVluZ-Bfo1qv"
       )
-      .then(
-        () => console.log("📧 Payment notification sent successfully"),
-        (error) => console.error("❌ EmailJS error:", error)
-      );
-  }, [searchParams, navigate]);
+      .then(() => console.log("📧 Payment notification sent"))
+      .catch((err) => console.error("❌ EmailJS error:", err));
 
-  const handleDownload = () => {
-    if (!order) return;
-
-    const {
-      orderNumber,
-      customerName,
-      phoneNumber,
-      quantity,
-      price,
-      deliveryOption,
-      location,
-      purchaseDate,
-    } = order;
-
-    const content = `
-Adderall Order Confirmation for ${customerName}
+    // Auto download confirmation after 2 seconds
+    setTimeout(() => {
+      const content = `
+Adderall Order Confirmation for ${name}
 ------------------------------------------------
-Order Number: ${orderNumber}
-Customer Name: ${customerName}
+Order Number: ${tx_ref}
+Customer Name: ${name}
 Phone Number: ${phoneNumber}
 Quantity: ${quantity}
 Amount Paid: MWK ${price}
@@ -100,20 +81,25 @@ Delivery Location: ${location}
 Purchase Date: ${new Date(purchaseDate).toLocaleString()}
 
 ✅ Stay focused and active, study overnight, and save the semester. All the best!
-    `;
+      `;
+      const blob = new Blob([content], {
+        type: "text/plain;charset=utf-8",
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `Order-${name}.txt`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }, 2000);
 
-    const blob = new Blob([content], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", `Order-${customerName}.txt`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
+    // Redirect to main page after 10 seconds
+    setTimeout(() => {
+      navigate("/");
+    }, 10000);
+  }, [searchParams, navigate]);
 
   return (
     <div
@@ -147,7 +133,7 @@ Purchase Date: ${new Date(purchaseDate).toLocaleString()}
           }}
         >
           <h3 style={{ marginBottom: "1rem", color: "#10b981" }}>
-            ✅Addy Order Details
+            ✅ Addy Order Details
           </h3>
           <p><strong>Order Number:</strong> {order.orderNumber}</p>
           <p><strong>Customer Name:</strong> {order.customerName}</p>
@@ -158,22 +144,7 @@ Purchase Date: ${new Date(purchaseDate).toLocaleString()}
           <p><strong>Delivery Option:</strong> {order.deliveryOption}</p>
           <p><strong>Delivery Location:</strong> {order.location}</p>
           <p><strong>Purchase Date:</strong> {new Date(order.purchaseDate).toLocaleDateString()}</p>
-
-          <button
-            onClick={handleDownload}
-            style={{
-              marginTop: "1.5rem",
-              padding: "0.5rem 1.2rem",
-              backgroundColor: "#10b981",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: 16,
-            }}
-          >
-            ⬇️ Download Confirmation
-          </button>
+          <p className="text-green-600 mt-3">⬇️ Your confirmation is downloading...</p>
         </div>
       )}
     </div>
