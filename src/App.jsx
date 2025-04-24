@@ -122,14 +122,23 @@ import VideoSection from "./components/video";
 import ForSale from "./components/ForSale";
 
 // Registration and payment components
+// import StudentCourseRegistrationForm from "./components/Registration/register";
+// import PaymentPage from "./virtuals/spotify/spotifyPayment";
+// import ChatgptPaymentPage from "./virtuals/chatgpt/chatgptpayents";
+// import ApplemusicPaymentPage from "./virtuals/applemusic/applemusicpayment";
+// import NetflixPaymentPage from "./virtuals/netflix/netflixpayment";
+// import PaymentSuccess from "./virtuals/paymentsuccess/PaymentSuccess";
+// import AdderalpayementPage from "./virtuals/adderall/adderallpayments";
+// import AdderalPaymentSuccess from "./virtuals/adderalpaymentsucess/adderalpaymentsucess";
+
 import StudentCourseRegistrationForm from "./components/Registration/register";
-import PaymentPage from "./virtuals/spotify/spotifyPayment";
-import ChatgptPaymentPage from "./virtuals/chatgpt/chatgptpayents";
-import ApplemusicPaymentPage from "./virtuals/applemusic/applemusicpayment";
-import NetflixPaymentPage from "./virtuals/netflix/netflixpayment";
-import PaymentSuccess from "./virtuals/paymentsuccess/PaymentSuccess";
-import AdderalpayementPage from "./virtuals/adderall/adderallpayments";
-import AdderalPaymentSuccess from "./virtuals/adderalpaymentsucess/adderalpaymentsucess";
+import PaymentPage from "../virtuals/spotify/spotifyPayment";
+import ChatgptPaymentPage from "../virtuals/chatgpt/chatgptpayents";
+import ApplemusicPaymentPage from "../virtuals/applemusic/applemusicpayment";
+import NetflixPaymentPage from "../virtuals/netflix/netflixpayment";
+import PaymentSuccess from "../virtuals/paymentsuccess/PaymentSuccess";
+import AdderalpayementPage from "../virtuals/adderall/adderallpayments";
+import AdderalPaymentSuccess from "../virtuals/adderalpaymentsucess/adderalpaymentsucess";
 
 const App = () => (
   <BrowserRouter>
