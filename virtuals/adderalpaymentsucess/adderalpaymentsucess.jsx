@@ -39,7 +39,7 @@ const AdderalPaymentSuccess = () => {
       purchaseDate,
       phoneNumber,
       location,
-      deliveryOption,
+      DeliveryOption,
       quantity,
     };
 
@@ -55,7 +55,7 @@ const AdderalPaymentSuccess = () => {
           name: name,
           phoneNumber: phoneNumber,
           tx_ref,
-          delivery_location: location,
+          Location: location,
           DeliveryOption: deliveryOption,
           Description:Description,
           Location:location,
