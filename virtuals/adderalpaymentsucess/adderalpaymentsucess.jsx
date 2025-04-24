@@ -54,9 +54,11 @@ const AdderalPaymentSuccess = () => {
         {
           name: name,
           customer_phone: phoneNumber,
-          order_id: tx_ref,
+          orderNumber: tx_ref,
           delivery_location: location,
-          delivery_option: deliveryOption,
+          Deliveryoption: deliveryOption,
+          Description:Description,
+          Location:location,
           quantity,
           amount: price,
           date: new Date(purchaseDate).toLocaleString(),
