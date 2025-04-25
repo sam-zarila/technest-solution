@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+// ... [same imports]
+import React, { useEffect, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState("Verifying payment...");
   const [order, setOrder] = useState(null);
+  const [downloadText, setDownloadText] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -148,7 +153,7 @@ Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
 Amount Paid: MWK ${userOrder.price}
 Email Used: ${userOrder.email}
-Access Email: patsondamascus@gmail.com
+Access Email:technestsystem265@gmail.com
 Access Password: ${password}
 Purchase Date: ${userOrder.purchaseDate}
 
@@ -178,7 +183,9 @@ Purchase Date: ${userOrder.purchaseDate}
 `;
         }
 
-        // Create downloadable file
+        setDownloadText(downloadText); // Save text for manual download
+
+        // Create downloadable file (automatic)
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
@@ -211,13 +218,21 @@ Purchase Date: ${userOrder.purchaseDate}
     saveOrder();
   }, [searchParams, navigate]);
 
+  const handleManualDownload = () => {
+    const blob = new Blob([downloadText], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${order.CustomerName}_order-details.txt`;
+    link.click();
+  };
+
   return (
     <div style={{
       minHeight: "100vh",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      fontSize:18,
+      fontSize: 18,
       alignItems: "center",
       fontFamily: "Arial, sans-serif",
       padding: "2rem",
@@ -246,6 +261,21 @@ Purchase Date: ${userOrder.purchaseDate}
           {order.EndDate && (
             <p><strong>End Date:</strong> {new Date(order.EndDate).toDateString()}</p>
           )}
+          <button 
+            onClick={handleManualDownload}
+            style={{
+              marginTop: "1rem",
+              padding: "0.5rem 1rem",
+              backgroundColor: "#4caf50",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "16px"
+            }}
+          >
+            📥 Download Order Details
+          </button>
         </div>
       )}
     </div>
