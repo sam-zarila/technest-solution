@@ -82,6 +82,7 @@ Order Number: ${order.orderNumber}
 Customer Name: ${order.customerName}
 Phone Number: ${order.phoneNumber}
 Quantity: ${order.quantity}
+Description: ${order.Description}
 Amount Paid: MWK ${order.price}
 Delivery Option: ${order.deliveryOption}
 Delivery Location: ${order.location}
