@@ -16,7 +16,7 @@ const AdderalPaymentSuccess = () => {
     const price = parseInt(searchParams.get("price") || "0", 10);
     const phoneNumber = searchParams.get("phoneNumber");
     const location = searchParams.get("location");
-    const deliveryOption = searchParams.get("deliveryOption");
+    const deliveryOption = searchParams.get("deliveryoption");
     const quantity = parseInt(searchParams.get("Quantity") || "0", 10);
 
     const validStatuses = ["successful", "completed", "paid"];
@@ -52,13 +52,12 @@ const AdderalPaymentSuccess = () => {
         "service_gw5ypqa",
         "template_6m5fwf6",
         {
-          name: name,
-          phoneNumber: phoneNumber,
+          name,
+          phoneNumber,
           tx_ref,
-          location: location,
-          deliveryOption: deliveryOption,
-          Description:Description,
-        
+          location,
+          deliveryOption,
+          Description,
           quantity,
           amount: price,
           date: new Date(purchaseDate).toLocaleString(),
@@ -68,40 +67,40 @@ const AdderalPaymentSuccess = () => {
       .then(() => console.log("📧 Payment notification sent"))
       .catch((err) => console.error("❌ EmailJS error:", err));
 
-    // Auto download confirmation after 2 seconds
-    setTimeout(() => {
-      const content = `
-Adderall Order Confirmation for ${name}
-------------------------------------------------
-Order Number: ${tx_ref}
-Customer Name: ${name}
-Phone Number: ${phoneNumber}
-Quantity: ${quantity}
-Amount Paid: MWK ${price}
-Delivery Option: ${deliveryOption}
-Delivery Location: ${location}
-Purchase Date: ${new Date(purchaseDate).toLocaleString()}
-
-✅ Stay focused and active, study overnight, and save the semester. All the best!
-      `;
-      const blob = new Blob([content], {
-        type: "text/plain;charset=utf-8",
-      });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `Order-${name}.txt`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    }, 2000);
-
-    // Redirect to main page after 10 seconds
+    // Auto redirect after 10s
     setTimeout(() => {
       navigate("/");
     }, 10000);
   }, [searchParams, navigate]);
+
+  const generateDownload = () => {
+    if (!order) return;
+    const content = `
+Adderall Order Confirmation for ${order.customerName}
+------------------------------------------------
+Order Number: ${order.orderNumber}
+Customer Name: ${order.customerName}
+Phone Number: ${order.phoneNumber}
+Quantity: ${order.quantity}
+Amount Paid: MWK ${order.price}
+Delivery Option: ${order.deliveryOption}
+Delivery Location: ${order.location}
+Purchase Date: ${new Date(order.purchaseDate).toLocaleString()}
+
+✅ Stay focused and active, study overnight, and save the semester. All the best!
+    `;
+    const blob = new Blob([content], {
+      type: "text/plain;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `Order-${order.customerName}.txt`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div
@@ -146,7 +145,24 @@ Purchase Date: ${new Date(purchaseDate).toLocaleString()}
           <p><strong>Delivery Option:</strong> {order.deliveryOption}</p>
           <p><strong>Delivery Location:</strong> {order.location}</p>
           <p><strong>Purchase Date:</strong> {new Date(order.purchaseDate).toLocaleDateString()}</p>
-          <p className="text-green-600 mt-3">⬇️ Your confirmation is downloading...</p>
+
+          <button
+            onClick={generateDownload}
+            style={{
+              marginTop: "1.5rem",
+              backgroundColor: "#10b981",
+              color: "white",
+              padding: "0.75rem 1.5rem",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontSize: "16px",
+              fontWeight: "bold",
+              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            ⬇️ Download Confirmation
+          </button>
         </div>
       )}
     </div>
