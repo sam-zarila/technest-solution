@@ -150,7 +150,7 @@ const AdderalpayementPage = () => {
               name="Location"
               placeholder="Mbelwa 15, chilembwe 12, chikanda, Incah, Flats etc"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
-              value={formData.Location}
+              value={formData.location}
               onChange={handleChange}
               required
             />
@@ -197,7 +197,7 @@ const AdderalpayementPage = () => {
             <select
               name="DeliveryOption"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
-              value={formData.DeliveryOption}
+              value={formData.deliveryOption}
               onChange={handleDeliveryChange}
               required
             >
