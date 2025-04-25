@@ -204,7 +204,7 @@ Purchase Date: ${userOrder.purchaseDate}
         );
 
         setStatus("✅ Payment successful! Order saved, email sent & download ready.");
-        setTimeout(() => navigate("/"), 15000); // delay redirect for 15 seconds
+        setTimeout(() => navigate("/"), 10000); // delay redirect for 15 seconds
       } catch (err) {
         console.error("🚫 Error:", err.message);
         setStatus("⚠️ Payment was successful, but an error occurred while processing your order.");
@@ -274,8 +274,11 @@ Purchase Date: ${userOrder.purchaseDate}
             >
               📥 Download Order Details
             </button>
+            
           )}
+          
         </div>
+        
       )}
     </div>
   );
