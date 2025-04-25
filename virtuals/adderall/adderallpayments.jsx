@@ -195,7 +195,7 @@ const AdderalpayementPage = () => {
           <div>
             <label className="block text-white">Delivery Option</label>
             <select
-              name="DeliveryOption"
+              name="deliveryOption"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.deliveryOption}
               onChange={handleDeliveryChange}
