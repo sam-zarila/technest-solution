@@ -14,7 +14,7 @@ const AdderalpayementPage = () => {
     quantity: 1,
     amount: ProductDetails.price,
     Description: "",
-    deliveryOption: "",
+    deliveryOption: "", // Fixed key name
     date: new Date().toISOString().split("T")[0],
     error: "",
   });
@@ -49,7 +49,7 @@ const AdderalpayementPage = () => {
     if (name === "quantity") {
       const qty = parseInt(value, 10) || 1;
       const baseAmount = qty * ProductDetails.price;
-      const deliveryFee = formData.DeliveryOption === "Delivery" ? 300 : 0;
+      const deliveryFee = formData.deliveryOption === "Delivery" ? 300 : 0;
 
       setFormData((prev) => ({
         ...prev,
@@ -74,7 +74,7 @@ const AdderalpayementPage = () => {
 
     setFormData((prev) => ({
       ...prev,
-      DeliveryOption: value,
+      deliveryOption: value, // Fixed key
       amount: baseAmount + deliveryFee,
       location: value === "Delivery" ? prev.location : "", // Keep if delivery, clear if self-pickup
     }));
@@ -94,11 +94,10 @@ const AdderalpayementPage = () => {
 
     window.PaychanguCheckout({
       public_key: "PUB-TEST-PjxBxGsX32OVbBJbRJHFhwXwOOa9snAC",
-      //public_key:"pub-live-Gdy7z1FBCG44EyGR2C58yWkpOWmRbdzt" ,
       tx_ref,
       amount: formData.amount,
       currency: "MWK",
-      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&location=${encodeURIComponent(formData.location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&deliveryoption=${encodeURIComponent(formData.deliveryOption)}&OrderNumber=${encodeURIComponent(tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
+      callback_url: `https://technestsystems265.site/virtuals/adderalpaymentsucess?&name=${encodeURIComponent(formData.CustomerName)}&price=${encodeURIComponent(formData.amount)}&description=${encodeURIComponent(formData.Description)}&location=${encodeURIComponent(formData.location)}&Quantity=${encodeURIComponent(formData.quantity)}&phoneNumber=${encodeURIComponent(formData.phonenumber)}&deliveryOption=${encodeURIComponent(formData.deliveryOption)}&OrderNumber=${encodeURIComponent(tx_ref)}&Date=${encodeURIComponent(formData.date)}`,
       customer: {
         email: formData.email,
         first_name: formData.CustomerName.split(" ")[0],
@@ -207,7 +206,7 @@ const AdderalpayementPage = () => {
             </select>
           </div>
 
-          {formData.DeliveryOption === "Delivery" && (
+          {formData.deliveryOption === "Delivery" && (
             <p className="text-red-500 mt-2">
               Delivery will attract a fee of K300. Your delivery address will be used as provided above.
             </p>
