@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const ProductDetails = {
   product: "Adderall",
-  price: 3000,
+  price: 3500,
 };
 
 const AdderalpayementPage = () => {
