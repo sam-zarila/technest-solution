@@ -147,7 +147,7 @@ const AdderalpayementPage = () => {
             <label className="block text-white">Location</label>
             <input
               type="text"
-              name="Location"
+              name="location"
               placeholder="Mbelwa 15, chilembwe 12, chikanda, Incah, Flats etc"
               className="w-full p-3 rounded-lg border border-gray-700 text-white bg-gray-800"
               value={formData.location}
