@@ -170,7 +170,7 @@ const AdderalpayementPage = () => {
           </div>
 
           <div>
-            <label className="block text-white">Description</label>
+            <label className="block text-white">Description(optional)</label>
             <input
               type="text"
               name="Description"
