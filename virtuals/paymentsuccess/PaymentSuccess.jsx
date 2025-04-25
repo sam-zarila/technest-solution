@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-// ... [same imports]
-import React, { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -34,7 +30,7 @@ const PaymentSuccess = () => {
 
     const saveOrder = async () => {
       try {
-        setStatus("💾 Saving orders...");
+        setStatus("💾 Saving orders please wait...");
 
         const response = await fetch("https://technestbackend-1.onrender.com/orders/create", {
           method: "POST",
@@ -142,7 +138,7 @@ Enjoy! TechNest 🍿
 `;
             break;
 
-          case "chatgpt plus": 
+          case "chatgpt plus":
             downloadText = `
 🤖 ChatGPT Plus Access
 
@@ -153,7 +149,7 @@ Product: ${userOrder.product}
 Order Number: ${userOrder.orderNumber}
 Amount Paid: MWK ${userOrder.price}
 Email Used: ${userOrder.email}
-Access Email:technestsystem265@gmail.com
+Access Email: technestsystem265@gmail.com
 Access Password: ${password}
 Purchase Date: ${userOrder.purchaseDate}
 
@@ -183,9 +179,9 @@ Purchase Date: ${userOrder.purchaseDate}
 `;
         }
 
-        setDownloadText(downloadText); // Save text for manual download
+        setDownloadText(downloadText);
 
-        // Create downloadable file (automatic)
+        // Auto download
         const blob = new Blob([downloadText], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
@@ -208,7 +204,7 @@ Purchase Date: ${userOrder.purchaseDate}
         );
 
         setStatus("✅ Payment successful! Order saved, email sent & download ready.");
-        setTimeout(() => navigate("/"), 9000);
+        setTimeout(() => navigate("/"), 15000); // delay redirect for 15 seconds
       } catch (err) {
         console.error("🚫 Error:", err.message);
         setStatus("⚠️ Payment was successful, but an error occurred while processing your order.");
@@ -250,8 +246,9 @@ Purchase Date: ${userOrder.purchaseDate}
           maxWidth: "600px",
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
           textAlign: "left",
+          color: "white"
         }}>
-          <h3 style={{ marginBottom: "1rem", color: "white" }}>✅ Order Details</h3>
+          <h3 style={{ marginBottom: "1rem" }}>✅ Order Details</h3>
           <p><strong>Order Number:</strong> {order.orderNumber}</p>
           <p><strong>Customer Name:</strong> {order.CustomerName}</p>
           <p><strong>Email:</strong> {order.email}</p>
@@ -261,21 +258,23 @@ Purchase Date: ${userOrder.purchaseDate}
           {order.EndDate && (
             <p><strong>End Date:</strong> {new Date(order.EndDate).toDateString()}</p>
           )}
-          <button 
-            onClick={handleManualDownload}
-            style={{
-              marginTop: "1rem",
-              padding: "0.5rem 1rem",
-              backgroundColor: "#4caf50",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "16px"
-            }}
-          >
-            📥 Download Order Details
-          </button>
+          {downloadText && (
+            <button 
+              onClick={handleManualDownload}
+              style={{
+                marginTop: "1.5rem",
+                padding: "0.7rem 1.2rem",
+                backgroundColor: "#4caf50",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                fontSize: "16px",
+                cursor: "pointer"
+              }}
+            >
+              📥 Download Order Details
+            </button>
+          )}
         </div>
       )}
     </div>
